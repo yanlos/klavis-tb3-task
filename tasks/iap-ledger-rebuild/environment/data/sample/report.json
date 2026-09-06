@@ -1,0 +1,55 @@
+{
+ "as_of": "2026-09-01T00:00:00Z",
+ "users": {
+  "u_alice": {
+   "balance": 100,
+   "buckets": [
+    {
+     "bucket_id": "topup:tx_alice_1",
+     "credits_granted": 100,
+     "expires_at": null,
+     "granted_at": "2026-03-12T14:20:00Z",
+     "kind": "topup",
+     "remaining": 100
+    }
+   ],
+   "debt": 0,
+   "subscriptions": [
+    {
+     "pending_plan": null,
+     "plan": "pro_monthly",
+     "status": "lapsed",
+     "subscription_id": "s_alice"
+    }
+   ]
+  },
+  "u_bob": {
+   "balance": 500,
+   "buckets": [
+    {
+     "bucket_id": "sub:s_bob:0:4",
+     "credits_granted": 500,
+     "expires_at": "2026-09-30T09:00:00Z",
+     "granted_at": "2026-08-30T09:00:00Z",
+     "kind": "subscription",
+     "remaining": 500
+    }
+   ],
+   "debt": 0,
+   "subscriptions": [
+    {
+     "pending_plan": null,
+     "plan": "pro_yearly",
+     "status": "active",
+     "subscription_id": "s_bob"
+    }
+   ]
+  },
+  "u_cara": {
+   "balance": 0,
+   "buckets": [],
+   "debt": 0,
+   "subscriptions": []
+  }
+ }
+}

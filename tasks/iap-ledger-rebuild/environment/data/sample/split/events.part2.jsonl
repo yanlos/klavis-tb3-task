@@ -1,0 +1,9 @@
+{"id":"8e81973e-0bec-47b0-b898-d190f9ebdacc","type":"subscription_start","user_id":"u_bob","occurred_at":"2026-04-30T09:00:00Z","subscription_id":"s_bob","product_id":"pro_yearly"}
+{"id":"6b4cb242-4a23-4596-a217-beaddbc496cb","type":"topup_purchase","user_id":"u_bob","occurred_at":"2026-05-01T09:00:00Z","transaction_id":"tx_bob_1","product_id":"topup_300"}
+{"id":"6b4cb242-4a23-4596-a217-beaddbc496cb","type":"topup_purchase","user_id":"u_bob","occurred_at":"2026-05-01T09:00:00Z","transaction_id":"tx_bob_1","product_id":"topup_300"}
+{"id":"18f135d2-5f55-4203-b018-50c5a38fd547","type":"signup","user_id":"u_cara","occurred_at":"2026-05-02T00:00:00Z"}
+{"id":"907a70c3-1012-4037-b64c-e4228c38fb29","type":"scan","user_id":"u_cara","occurred_at":"2026-05-03T00:00:00Z","credits":12}
+{"id":"92276658-1e27-41c0-8a6a-63ec24ede6a4","type":"scan","user_id":"u_bob","occurred_at":"2026-05-10T09:00:00Z","credits":200}
+{"id":"ae97ba94-d0ed-482f-8f6d-05584ef8aa38","type":"topup_refund","user_id":"u_bob","occurred_at":"2026-05-12T09:00:00Z","transaction_id":"tx_bob_1"}
+{"id":"0fd630f1-f29d-4da9-953f-48f1a09f76b5","type":"subscription_renewed","user_id":"u_alice","occurred_at":"2026-05-15T14:20:00Z","subscription_id":"s_alice"}
+{"id":"923a7369-94e3-4f91-9a61-dbe22e44158b","type":"scan","user_id":"u_bob","occurred_at":"2026-07-09T09:00:00Z","credits":700}

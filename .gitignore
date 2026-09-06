@@ -1,0 +1,10 @@
+# Harbor job output is large. Commit curated copies under results/ instead.
+jobs/
+tasks-cheat/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.env
+
+.py312/
