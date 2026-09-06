@@ -57,7 +57,16 @@ written as well. Rewrite these three files by hand, keeping the facts:
 * `tasks/iap-ledger-rebuild/README.md` (keep the four section headings)
 * `tasks/iap-ledger-rebuild/solution/solve.sh` (the comments)
 
-After the rewrite run `scripts/run_static_checks.sh` again.
+After the rewrite run `scripts/run_static_checks.sh` again, then rerun the
+rubric review so the final wording is what the reviewer graded:
+
+```
+export ANTHROPIC_API_KEY=<your key>
+scripts/run_rubric.sh
+```
+
+The review takes about ten minutes and costs a few dollars. Read
+`jobs/rubric-check/check_report.json` and copy it into `results/rubric-check/`.
 
 ## 5. Confirm the author fields
 
