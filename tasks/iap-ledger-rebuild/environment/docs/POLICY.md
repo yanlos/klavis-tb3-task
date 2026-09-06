@@ -114,7 +114,10 @@ if close is not null and (clock is null or close > clock):
 ```
 
 `close` is the close time of the ledger (section 7). `P(user)` depends only on
-the event set of the user, the arrival indices, the catalog and `close`.
+the event set of the user, the arrival indices, the catalog and `close`. The
+final `run_due_timers(close)` step is part of `P(user)` at every update, also
+for a user whose first event arrives in a run after the close was set. Timer
+postings that it produces have `event_id = null`.
 
 ## 4. Event types
 
@@ -174,7 +177,8 @@ Extra field: `subscription_id`.
 * If `status` is `"revoked"`, discard the event.
 * If `status` is `"lapsed"`, do a **restart**: set `term = term + 1`,
   `anchor = occurred_at`, `paid_through = -1`, `pending_plan = null` and
-  `status = "active"`. Then call `pay_period(first_cycle = 0)`.
+  `status = "active"`. The `plan` does not change. Then call
+  `pay_period(first_cycle = 0)`.
 * If `status` is `"active"`, call `pay_period(first_cycle = paid_through + 1)`.
 
 ### 4.7 `subscription_plan_changed`
@@ -430,7 +434,9 @@ bucket `id` of section 5.1), `kind`, `credits_granted`, `remaining`,
 `granted_at` and `expires_at`. A subscription in the report has exactly the
 keys `subscription_id`, `plan`, `status` and `pending_plan`.
 
-* `as_of`: the close time, or `null`.
+* `as_of`: the close time carried in the state, or `null` when no close pass
+  has ever run. A run without `--as-of` reports the close time of an earlier
+  run unchanged.
 * `users`: one entry for every `user_id` that appears on at least one
   non-duplicate feed line, in this run or in an earlier run, keyed by
   `user_id`. A user whose every event was discarded is still listed, with

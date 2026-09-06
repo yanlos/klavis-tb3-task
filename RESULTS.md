@@ -112,7 +112,18 @@ length. The instruction points at the directory and says amendments win.
 Three new verifier cases cover them. The two round 1 programs that passed
 now score reward 0 with 15 of 44 tests failing.
 
-Round 2, hardened spec: PENDING
+Round 1b, clarified base policy (after the eleven spec fixes, before the
+amendments), graded by the amended verifier:
+
+| solver | language | verifier result |
+|---|---|---|
+| 4 | Python | 29 of 44; all 15 failures are amendment rules |
+| 5 | Node | 29 of 44; all 15 failures are amendment rules |
+
+Both would have passed the base policy. Four of five solvers clear the base
+task. The amendments are what stops them.
+
+Round 2, hardened spec with amendments: PENDING
 
 ## 4. Standard agent trials
 
