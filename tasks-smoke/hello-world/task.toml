@@ -1,0 +1,28 @@
+schema_version = "1.1"
+artifacts = ["/app/hello.txt"]
+
+[task]
+name = "smoke/hello-world"
+description = "Two minute plumbing check for agent logins."
+authors = [{ name = "Maurice Jensen", email = "mauricejensen82@gmail.com" }]
+
+[metadata]
+author_name = "Maurice Jensen"
+author_email = "mauricejensen82@gmail.com"
+category = "Software"
+subcategory = "Systems"
+tags = ["smoke"]
+expert_time_estimate_hours = 0.1
+
+[verifier]
+timeout_sec = 120.0
+environment_mode = "separate"
+
+[agent]
+timeout_sec = 600.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
