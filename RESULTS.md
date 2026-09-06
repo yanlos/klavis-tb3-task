@@ -26,7 +26,19 @@ Command:
 scripts/run_rubric.sh
 ```
 
-PENDING
+`harbor check` runs a Claude Code reviewer inside a container with the TB3
+rubric `docs/prompts/task-implementation.toml`. The CI default model
+(`anthropic/claude-opus-4-8`) and `anthropic/claude-opus-5` both returned
+"model not found" at first. The cause was an `ANTHROPIC_BASE_URL` variable
+inherited from the Claude desktop app, which Harbor passed into the container.
+`scripts/env.sh` now unsets it.
+
+Result with `anthropic/claude-opus-5` on 2026-09-06, before the amendments
+were added: 35 criteria, 33 pass, 1 not applicable
+(`do_not_modify_enforced`, the task has no such constraint), 1 fail
+(`task_toml_schema`: the `network_mode = "public"` line that `harbor task
+init` writes is not a Harbor field). The line is removed. Output:
+`results/rubric-check/`.
 
 ## 3. Docker build, oracle and nop
 

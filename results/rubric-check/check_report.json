@@ -1,0 +1,151 @@
+{
+  "results": [
+    {
+      "checks": {
+        "verifiable": {
+          "explanation": "Verification is fully programmatic and exact: for every feed the verifier runs a root-side reference oracle (tests/ledger_ref.py) and the agent's program, then compares every ledger posting field-by-field (seq, at, user_id, event_id, kind, bucket_id, delta, balance_after, detail) and every report field. No LLM judging, no tolerances beyond normalising a whole-second timestamp written with a `.000` millisecond part. tests/test.sh installs nothing at verify time; pytest and pytest-json-ctrf are pinned and baked into tests/Dockerfile. I ran the suite twice locally against the reference: 40/40 passed both times in ~5.5s with identical results.",
+          "outcome": "pass"
+        },
+        "solvable": {
+          "explanation": "solution/solve.sh installs solution/ledger_ref.py (495 lines, Python stdlib only) as /app/ledger/rebuild. I reproduced the verifier container layout and ran the full suite against it: all 40 tests pass. The reference also reproduces environment/data/sample/{ledger.jsonl,report.json} and both split parts byte-for-byte. A ~500-line implementation of a precisely written policy is well within a few hours for an expert who knows the design.",
+          "outcome": "pass"
+        },
+        "difficult": {
+          "explanation": "The hard part is not volume but the interaction of rules under exact comparison: month-anchored cycle boundaries with month-end clamping computed from the original anchor, a three-priority timer queue (expiry/lapse/grant) whose grant timers read the plan at fire time, grace/lapse/restart semantics, debt created by refund-after-spend and repaid by later grants, immediate upgrades vs deferred downgrades, and — the key architectural insight — an append-only ledger where a late-arriving event must reverse the changed tail in reverse order and re-emit, with correct running balances and a global seq that survives checkpointed runs whose earlier feed files are deleted. A single wrong tie-break or a missing reversal scores 0. This is beyond a routine undergraduate exercise.",
+          "outcome": "pass"
+        },
+        "interesting": {
+          "explanation": "Rebuilding a credit/entitlement ledger from an out-of-order App Store notification feed after balances drift is real, paid work for billing/payments engineers at subscription apps; the incident note, the frozen legacy nightly job and the Finance-approved policy mirror how such a remediation actually arrives.",
+          "outcome": "pass"
+        },
+        "outcome_verified": {
+          "explanation": "Tests only run the delivered program and compare its ledger/report/state-chaining behaviour. No tool, language or algorithm is mandated (the instruction explicitly leaves the state file format to the agent and only fixes the CLI contract, which is the necessary interface). The instruction states the goal, not a procedure.",
+          "outcome": "pass"
+        },
+        "anti_cheat_robustness": {
+          "explanation": "Ground truth lives only in the verifier image: scenarios.py and ledger_ref.py are under /tests (chmod 700, root) and never enter the agent container. The agent image contains only the policy, the incident note, the legacy job, the catalog and one small sample feed with its expected output — deliberately published as a format reference and useless for the 26 hidden handcrafted cases and the 3365-line random feed. At verify time the agent program runs as unprivileged `runner` with `env -i`, in a private dir whose parents are root-owned 711, so it cannot list or read /work/ref (reference outputs, mode 700) or /tests; I confirmed the permission model behaves as intended. Feed and state-in copies are deleted after each run and the state output is moved out of the agent's reach.",
+          "outcome": "pass"
+        },
+        "task_security": {
+          "explanation": "No network calls, no credential access, no obfuscation, no non-ASCII smuggling (checked), no prompt injection. The only privileged actions are container-local: chmod/chown of /work, /tests and /logs/verifier, and a kill of processes owned by the dedicated `runner` account inside the verifier container after each run. apt/pip usage is ordinary and confined to image build.",
+          "outcome": "pass"
+        },
+        "functional_verification": {
+          "explanation": "Every check executes the agent's program on generated feeds and compares actual output. There is no source scanning or string matching against the agent's code; the only file-level assertions are that /app/ledger/rebuild exists, is a regular file and is executable by others, which is a prerequisite for execution.",
+          "outcome": "pass"
+        },
+        "deterministic_reproducible": {
+          "explanation": "Both images pin the same base (node:22.23.2-bookworm-slim); pytest==9.1.1 and pytest-json-ctrf==0.5.2 are pinned; apt packages are unpinned as expected. All feeds are built in-process from seeded random.Random builders, and both the oracle and the agent see the identical generated feed, so even RNG drift could not desynchronise them. No live services. Two consecutive full runs produced identical results, and a dedicated test re-runs the agent twice from the same state and requires identical ledger and report.",
+          "outcome": "pass"
+        },
+        "essential_difficulty": {
+          "explanation": "Formatting risk is deliberately de-risked: POLICY.md §6.1/§7.1 give normative key tables, extra keys and key order are ignored, `.000` millisecond timestamps are accepted, and a complete correct sample ledger and report (plus both split halves) ship in the agent image so the agent can self-check the format before touching the semantics. Remaining failures come from the billing/timer/reversal reasoning, not clerical detail.",
+          "outcome": "pass"
+        },
+        "test_instruction_alignment": {
+          "explanation": "Each assertion maps to a stated requirement: program path/executability, the exact CLI contract, exit status 0, the 120 s per-run limit, ledger and report contents per POLICY.md (which the instruction makes normative), one-shot vs split equivalence of concatenated lines and seq numbers, deletion of earlier feed files, and run-to-run determinism. Conversely every instruction requirement is covered. The suite is longer than ~100 lines, but the bulk is privilege-drop/isolation plumbing, comparison helpers and scenario data generation rather than additional requirements; only the three hand-derived cases assert literal values, and those are derived from the published policy.",
+          "outcome": "pass"
+        },
+        "novel": {
+          "explanation": "A bespoke, internally consistent credit-ledger policy (custom bucket ids, timer priorities, forfeit/lapse/restart rules, reversal emission procedure) with a custom checkpointing contract. There is no widely available solution to reproduce; the agent must read and internalise the supplied documents.",
+          "outcome": "pass"
+        },
+        "agentic": {
+          "explanation": "The agent must explore /app/docs, /app/legacy and /app/data, extract the rules from a long policy, build a program, and iterate against the supplied sample ledger/report and the split-run sample until both one-shot and checkpointed output match — including designing and exercising its own state format across runs. Not achievable in a single zero-shot generation.",
+          "outcome": "pass"
+        },
+        "reviewable": {
+          "explanation": "The policy document is self-contained and precise, the README explains the design, the isolation model and the category choice, and expected values are derived at verify time by running the reference rather than hardcoded — except three cases whose literals are documented as hand-derived from the policy, which lets a reviewer cross-check the oracle. I independently confirmed the shipped sample outputs are exactly what the reference produces, one-shot and split.",
+          "outcome": "pass"
+        },
+        "instruction_concision": {
+          "explanation": "23 lines, human-written, absolute paths in backticks, goal stated up front, no procedure or solution hints (it explicitly says not to copy the legacy job's behaviour). The runtime/no-network/vendoring notes are genuine, structurally undiscoverable constraints of the verifier container rather than a tool listing.",
+          "outcome": "pass"
+        },
+        "solution_quality": {
+          "explanation": "The deliverable is a program, and solve.sh installs the genuine 495-line implementation kept as its own file in solution/ rather than a heredoc. Nothing is echoed: the program recomputes the whole ledger from the feed at verify time, and it is byte-identical to the verifier's oracle.",
+          "outcome": "pass"
+        },
+        "separate_verifier_configured": {
+          "explanation": "environment_mode = \"separate\" with artifacts = [\"/app/ledger/\"]. The verifier reads only the artifact (/app/ledger/rebuild) plus files it bakes itself: /tests/* and /app/data/products.json. All verifier tooling (venv, pinned pytest, pytest-json-ctrf, the `runner` account) is baked into tests/Dockerfile; test.sh installs nothing. Duplicated assets byte-match — tests/products.json == environment/data/products.json and tests/ledger_ref.py == solution/ledger_ref.py (md5 verified) — and both Dockerfiles use the identical pinned base image.",
+          "outcome": "pass"
+        },
+        "environment_hygiene": {
+          "explanation": "The agent image copies only data/, docs/ and legacy/ and pre-creates the empty /app/ledger; no tests, no solution, no pytest or other test-only dependency. The verifier image owns /tests, installs its own pinned tooling at build time and pre-creates the artifact parent. Both Dockerfiles run apt-get update, use --no-install-recommends without version pins, and clean /var/lib/apt/lists.",
+          "outcome": "pass"
+        },
+        "structured_data_schema": {
+          "explanation": "POLICY.md §6.1 and §7.1 give normative key tables and types for the ledger line and the report, state which keys are required and read by the verifier, state that extra keys and key order are ignored, and specify null handling and timestamp format. The state file format is intentionally free-form and is never inspected.",
+          "outcome": "pass"
+        },
+        "typos": {
+          "explanation": "Every path, flag and identifier I exercised resolves correctly: instruction paths match the agent Dockerfile COPYs, the documented CLI matches the reference argparse and the verifier invocation, and the sample directory contents match the sample README. No misspelled filenames or variable names found.",
+          "outcome": "pass"
+        },
+        "difficulty_explanation_quality": {
+          "explanation": "The metadata field names the concrete sources of difficulty (month-end anchor clamping, timer ordering, grace/lapse, refund debt, deferred downgrades, reversal postings, cross-run identity under exact comparison) in terms a non-specialist can follow, and the README expands it with the real-world role (billing/payments engineer remediating drifted balances) and states the feeds are synthetic and seeded. The toml field itself would read better with those two sentences inlined, but it is specific and non-circular.",
+          "outcome": "pass"
+        },
+        "solution_explanation_quality": {
+          "explanation": "It states the strategy accurately — keep each user's events and emitted postings in the state file, replay the user's timeline in effective order on each feed line, diff against what was already emitted via longest common prefix, emit reversals for the changed tail then the new postings — and that matches ledger_ref.py exactly (Replay.run, Ledger.update_user). The README adds why the quadratic replay is acceptable at this scale.",
+          "outcome": "pass"
+        },
+        "verification_explanation_quality": {
+          "explanation": "It describes the feed set (26 handcrafted cases, a seeded ~3400-line random feed, the sample), the root-oracle vs unprivileged-agent execution model, field-by-field comparison, the split-run protocol with deleted chunks and agent-supplied state, and the three hand-derived cases that check the oracle independently. This matches the test files; comparisons are exact so no tolerance calibration is needed beyond the documented `.000` millisecond normalisation.",
+          "outcome": "pass"
+        },
+        "category_and_tags": {
+          "explanation": "Software / Data engineering fits an event-sourced rebuild with checkpointing (the README also acknowledges Operations/billing as an alternative). Tags — billing, event-sourcing, ledger, subscriptions, in-app-purchase, checkpointing — are specific and discoverable.",
+          "outcome": "pass"
+        },
+        "task_name": {
+          "explanation": "\"iap-ledger-rebuild\" is lowercase kebab-case, three tokens, and conveys the core challenge (rebuilding an in-app-purchase ledger).",
+          "outcome": "pass"
+        },
+        "resource_configuration": {
+          "explanation": "All values were deliberately set: agent 28800 s matches the instruction's stated budget and the task's scope; verifier 900 s is generous but justified because the suite makes ~60 agent invocations each capped at 120 s (the reference finishes in ~6 s); 2 CPUs / 4 GB is modest and justified in the README by the agent running its own tooling. Difficulty comes from reasoning, not computation.",
+          "outcome": "pass"
+        },
+        "task_readme": {
+          "explanation": "The README carries genuine development context beyond the metadata: the verifier's isolation design, why the category was chosen, why the resource bump, the per-case rationale of the scenario set, the performance note on quadratic replay, and the author's relevant production experience. It expands rather than merely restating task.toml.",
+          "outcome": "pass"
+        },
+        "expert_time_estimate": {
+          "explanation": "4 hours is set and plausible: a focused expert who already knows the replay-and-diff design still has to encode a 441-line policy, the timer priority queue, month clamping, and a cross-run state format, and validate against the sample in both modes.",
+          "outcome": "pass"
+        },
+        "task_toml_schema": {
+          "explanation": "[environment] contains `network_mode = \"public\"`, which is not a recognised Harbor field (the network control field is `allow_internet`). It will be silently ignored, so the agent may not actually get the network access the author appears to intend, while suggesting a setting that does nothing.",
+          "outcome": "fail"
+        },
+        "no_extraneous_files": {
+          "explanation": "Every file is referenced: docs/, legacy/ and data/ are COPYed into the agent image and cited by the instruction; data/sample/ (including split/) is named by the instruction and its own README; tests/* are COPYed into the verifier image and consumed by test.sh; solution/ledger_ref.py is installed by solve.sh. No editor cruft, backups or scratch files.",
+          "outcome": "pass"
+        },
+        "artifact_efficiency": {
+          "explanation": "The single artifact is /app/ledger/, which the agent image creates empty — it therefore carries only the agent's own deliverable and nothing fixed at build time. Reference data (products.json) and the oracle are baked into the verifier image instead of transferred. There are no [[verifier.collect]] hooks, so rules 1-7 do not apply.",
+          "outcome": "pass"
+        },
+        "verifier_execution_isolation": {
+          "explanation": "The verifier does execute agent code, and it is hardened correctly: /logs/verifier is chmod 700 before pytest starts; the program is launched via `runuser -u runner` with `env -i` and start_new_session, never imported into the pytest process; stdout/stderr go to files rather than pipes so a daemonised grandchild cannot stall the harness; after each run the child's process group and every process owned by `runner` are SIGKILLed; and root derives the reward solely from pytest's exit code. Agent-visible directories are 700/711 with root-owned parents, so the unprivileged child can neither discover nor write the verdict. No cheat-oracle is shipped, but that is only recommended.",
+          "outcome": "pass"
+        },
+        "ctrf_reporting": {
+          "explanation": "test.sh runs pytest with `--ctrf /logs/verifier/ctrf.json`, and the run is root so the root-only reward directory is writable. I confirmed a valid CTRF report is produced with per-test granularity (40 tests, summary block present).",
+          "outcome": "pass"
+        },
+        "do_not_modify_enforced": {
+          "explanation": "instruction.md contains no constraint protecting a concrete artifact from modification. \"Use it as background only. Do not copy its behaviour\" concerns the legacy job's logic, not edits to it. (The in-fiction \"do not fix it\" line in INCIDENT-2026-08.md is not an instruction requirement, and editing that file would be harmless: the verifier runs in a separate container with only /app/ledger transferred.)",
+          "outcome": "not_applicable"
+        },
+        "binary_reward": {
+          "explanation": "test.sh is the only writer of /logs/verifier/reward.txt and writes literally `1` when pytest exits 0 and `0` otherwise. No conftest, hook or heredoc writes a reward, and no fractional or ratio-based value is reachable.",
+          "outcome": "pass"
+        }
+      },
+      "cost_usd": 2.7250384999999997,
+      "task_name": "iap-ledger-rebuild",
+      "error": null
+    }
+  ]
+}

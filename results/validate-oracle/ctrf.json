@@ -1,7 +1,7 @@
 {
     "reportFormat": "CTRF",
     "specVersion": "0.0.0",
-    "timestamp": "2026-09-06T22:05:49.121158+00:00",
+    "timestamp": "2026-09-06T22:26:11.924377+00:00",
     "generatedBy": "pytest",
     "results": {
         "tool": {
@@ -9,14 +9,14 @@
             "version": "9.1.1"
         },
         "summary": {
-            "tests": 40,
-            "passed": 40,
+            "tests": 44,
+            "passed": 44,
             "failed": 0,
             "skipped": 0,
             "pending": 0,
             "other": 0,
-            "start": 1788732345100,
-            "stop": 1788732349120
+            "start": 1788733566879,
+            "stop": 1788733571924
         },
         "environment": {
             "buildName": "Pytest JSON CTRF Report",
@@ -28,443 +28,491 @@
                 "name": "test_outputs.py::test_program_exists_and_is_executable",
                 "status": "passed",
                 "duration": 1,
-                "start": 1788732345128,
-                "stop": 1788732345129,
+                "start": 1788733566911,
+                "stop": 1788733566912,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_sample_feed",
                 "status": "passed",
-                "duration": 56,
-                "start": 1788732345129,
-                "stop": 1788732345185,
+                "duration": 77,
+                "start": 1788733566912,
+                "stop": 1788733566989,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 34,
-                "start": 1788732345186,
-                "stop": 1788732345220,
+                "duration": 59,
+                "start": 1788733566989,
+                "stop": 1788733567048,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 34,
-                "start": 1788732345221,
-                "stop": 1788732345255,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 35,
-                "start": 1788732345256,
-                "stop": 1788732345291,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 54,
-                "start": 1788732345292,
-                "stop": 1788732345346,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
                 "duration": 57,
-                "start": 1788732345347,
-                "stop": 1788732345404,
+                "start": 1788733567049,
+                "stop": 1788733567106,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 34,
-                "start": 1788732345405,
-                "stop": 1788732345439,
+                "duration": 68,
+                "start": 1788733567106,
+                "stop": 1788733567174,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 34,
-                "start": 1788732345439,
-                "stop": 1788732345473,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 34,
-                "start": 1788732345473,
-                "stop": 1788732345507,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 56,
-                "start": 1788732345507,
-                "stop": 1788732345563,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 57,
-                "start": 1788732345563,
-                "stop": 1788732345620,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 71,
-                "start": 1788732345620,
-                "stop": 1788732345691,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
                 "duration": 51,
-                "start": 1788732345691,
-                "stop": 1788732345742,
+                "start": 1788733567174,
+                "stop": 1788733567225,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 53,
-                "start": 1788732345743,
-                "stop": 1788732345796,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 52,
-                "start": 1788732345796,
-                "stop": 1788732345848,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 35,
-                "start": 1788732345848,
-                "stop": 1788732345883,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
                 "duration": 55,
-                "start": 1788732345883,
-                "stop": 1788732345938,
+                "start": 1788733567225,
+                "stop": 1788733567280,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 52,
-                "start": 1788732345938,
-                "stop": 1788732345990,
+                "duration": 76,
+                "start": 1788733567280,
+                "stop": 1788733567356,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 51,
-                "start": 1788732345991,
-                "stop": 1788732346042,
+                "duration": 75,
+                "start": 1788733567356,
+                "stop": 1788733567431,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 33,
-                "start": 1788732346043,
-                "stop": 1788732346076,
+                "duration": 72,
+                "start": 1788733567431,
+                "stop": 1788733567503,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
                 "duration": 58,
-                "start": 1788732346076,
-                "stop": 1788732346134,
+                "start": 1788733567504,
+                "stop": 1788733567562,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 52,
-                "start": 1788732346134,
-                "stop": 1788732346186,
+                "duration": 56,
+                "start": 1788733567562,
+                "stop": 1788733567618,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 73,
+                "start": 1788733567618,
+                "stop": 1788733567691,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 36,
+                "start": 1788733567691,
+                "stop": 1788733567727,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 70,
+                "start": 1788733567727,
+                "stop": 1788733567797,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 54,
+                "start": 1788733567798,
+                "stop": 1788733567852,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
                 "duration": 53,
-                "start": 1788732346186,
-                "stop": 1788732346239,
+                "start": 1788733567852,
+                "stop": 1788733567905,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 50,
-                "start": 1788732346239,
-                "stop": 1788732346289,
+                "duration": 76,
+                "start": 1788733567905,
+                "stop": 1788733567981,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 55,
-                "start": 1788732346290,
-                "stop": 1788732346345,
+                "duration": 75,
+                "start": 1788733567981,
+                "stop": 1788733568056,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 55,
-                "start": 1788732346345,
-                "stop": 1788732346400,
+                "duration": 75,
+                "start": 1788733568056,
+                "stop": 1788733568131,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 69,
+                "start": 1788733568132,
+                "stop": 1788733568201,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 79,
+                "start": 1788733568201,
+                "stop": 1788733568280,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 51,
+                "start": 1788733568280,
+                "stop": 1788733568331,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 58,
+                "start": 1788733568332,
+                "stop": 1788733568390,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 74,
+                "start": 1788733568390,
+                "stop": 1788733568464,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 75,
+                "start": 1788733568464,
+                "stop": 1788733568539,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 59,
+                "start": 1788733568539,
+                "stop": 1788733568598,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 52,
+                "start": 1788733568598,
+                "stop": 1788733568650,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
                 "duration": 77,
-                "start": 1788732346400,
-                "stop": 1788732346477,
+                "start": 1788733568650,
+                "stop": 1788733568727,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 76,
+                "start": 1788733568727,
+                "stop": 1788733568803,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 69,
+                "start": 1788733568803,
+                "stop": 1788733568872,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_random_feed_one_shot",
                 "status": "passed",
-                "duration": 378,
-                "start": 1788732346477,
-                "stop": 1788732346855,
+                "duration": 407,
+                "start": 1788733568873,
+                "stop": 1788733569280,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 120,
-                "start": 1788732346856,
-                "stop": 1788732346976,
+                "duration": 128,
+                "start": 1788733569281,
+                "stop": 1788733569409,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
+                    "parametrize::name::['amend_upgrade_proration', 'close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 101,
-                "start": 1788732346976,
-                "stop": 1788732347077,
+                "duration": 104,
+                "start": 1788733569409,
+                "stop": 1788733569513,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
+                    "parametrize::name::['amend_upgrade_proration', 'close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 86,
-                "start": 1788732347077,
-                "stop": 1788732347163,
+                "duration": 174,
+                "start": 1788733569513,
+                "stop": 1788733569687,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
+                    "parametrize::name::['amend_upgrade_proration', 'close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 67,
-                "start": 1788732347164,
-                "stop": 1788732347231,
+                "duration": 105,
+                "start": 1788733569688,
+                "stop": 1788733569793,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
+                    "parametrize::name::['amend_upgrade_proration', 'close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 68,
-                "start": 1788732347231,
-                "stop": 1788732347299,
+                "duration": 85,
+                "start": 1788733569793,
+                "stop": 1788733569878,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
-                    "parametrize::name::['close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
+                    "parametrize::name::['amend_upgrade_proration', 'close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted_split",
+                "status": "passed",
+                "duration": 114,
+                "start": 1788733569879,
+                "stop": 1788733569993,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_upgrade_proration', 'close_then_late_event', 'duplicate_events', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start']"
                 ]
             },
             {
                 "name": "test_outputs.py::test_sample_split",
                 "status": "passed",
-                "duration": 91,
-                "start": 1788732347299,
-                "stop": 1788732347390,
+                "duration": 125,
+                "start": 1788733569993,
+                "stop": 1788733570118,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_random_feed_split",
                 "status": "passed",
-                "duration": 1003,
-                "start": 1788732347391,
-                "stop": 1788732348394,
+                "duration": 1035,
+                "start": 1788733570118,
+                "stop": 1788733571153,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_repeat_run_from_same_state_is_deterministic",
                 "status": "passed",
-                "duration": 631,
-                "start": 1788732348394,
-                "stop": 1788732349025,
+                "duration": 673,
+                "start": 1788733571153,
+                "stop": 1788733571826,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_hand_computed_month_end_clamping",
                 "status": "passed",
-                "duration": 19,
-                "start": 1788732349026,
-                "stop": 1788732349045,
+                "duration": 22,
+                "start": 1788733571827,
+                "stop": 1788733571849,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_hand_computed_late_scan_rewind",
                 "status": "passed",
-                "duration": 41,
-                "start": 1788732349045,
-                "stop": 1788732349086,
+                "duration": 40,
+                "start": 1788733571849,
+                "stop": 1788733571889,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
@@ -472,8 +520,8 @@
                 "name": "test_outputs.py::test_hand_computed_refund_debt",
                 "status": "passed",
                 "duration": 33,
-                "start": 1788732349087,
-                "stop": 1788732349120,
+                "start": 1788733571890,
+                "stop": 1788733571923,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             }

@@ -28,7 +28,7 @@ Support could not explain these cases from the app screens. In several tickets t
 * 2026-08-05: engineering confirms that the nightly job reads the raw feed and cannot be corrected in place.
 * 2026-08-12: manual adjustments stopped.
 * 2026-08-14: finance approves the new ledger policy, version 3.
-* 2026-08-20: this note published.
+* 2026-08-20: finance publishes four amendments to the policy (`docs/POLICY-AMENDMENTS.md`). This note published.
 
 ## Decision
 

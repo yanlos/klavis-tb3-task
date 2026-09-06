@@ -2,45 +2,49 @@
 platform linux -- Python 3.11.2, pytest-9.1.1, pluggy-1.6.0 -- /opt/venv/bin/python
 rootdir: /tests
 plugins: json-ctrf-0.5.2
-collecting ... collected 40 items
+collecting ... collected 44 items
 
 test_outputs.py::test_program_exists_and_is_executable FAILED            [  2%]
-test_outputs.py::test_sample_feed FAILED                                 [  5%]
-test_outputs.py::test_handcrafted[clamp_jan31_monthly] FAILED            [  7%]
-test_outputs.py::test_handcrafted[close_then_late_event] FAILED          [ 10%]
-test_outputs.py::test_handcrafted[debt_repaid_in_parts] FAILED           [ 12%]
-test_outputs.py::test_handcrafted[downgrade_cancelled] FAILED            [ 15%]
-test_outputs.py::test_handcrafted[downgrade_deferred] FAILED             [ 17%]
-test_outputs.py::test_handcrafted[downgrade_early_renewal] FAILED        [ 20%]
-test_outputs.py::test_handcrafted[duplicate_events] FAILED               [ 22%]
-test_outputs.py::test_handcrafted[events_before_signup] FAILED           [ 25%]
-test_outputs.py::test_handcrafted[expire_then_grant_same_instant] FAILED [ 27%]
-test_outputs.py::test_handcrafted[grace_lapse_restart] FAILED            [ 30%]
-test_outputs.py::test_handcrafted[grace_renewal_within] FAILED           [ 32%]
-test_outputs.py::test_handcrafted[junk_user_and_revoked_pending] FAILED  [ 35%]
-test_outputs.py::test_handcrafted[lapse_boundary_second] FAILED          [ 37%]
-test_outputs.py::test_handcrafted[late_revocation_rewind] FAILED         [ 40%]
-test_outputs.py::test_handcrafted[late_scan_rewind] FAILED               [ 42%]
-test_outputs.py::test_handcrafted[late_subscription_start] FAILED        [ 45%]
-test_outputs.py::test_handcrafted[leap_day_yearly] FAILED                [ 47%]
-test_outputs.py::test_handcrafted[refund_debt_repay] FAILED              [ 50%]
-test_outputs.py::test_handcrafted[refund_unknown_and_twice] FAILED       [ 52%]
-test_outputs.py::test_handcrafted[revoke_yearly] FAILED                  [ 55%]
-test_outputs.py::test_handcrafted[same_second_events] FAILED             [ 57%]
-test_outputs.py::test_handcrafted[signup_twice_and_expiry] FAILED        [ 60%]
-test_outputs.py::test_handcrafted[spend_order_ties] FAILED               [ 62%]
+test_outputs.py::test_sample_feed FAILED                                 [  4%]
+test_outputs.py::test_handcrafted[amend_grace_window] FAILED             [  6%]
+test_outputs.py::test_handcrafted[amend_signup_rules] FAILED             [  9%]
+test_outputs.py::test_handcrafted[amend_upgrade_proration] FAILED        [ 11%]
+test_outputs.py::test_handcrafted[clamp_jan31_monthly] FAILED            [ 13%]
+test_outputs.py::test_handcrafted[close_then_late_event] FAILED          [ 15%]
+test_outputs.py::test_handcrafted[debt_repaid_in_parts] FAILED           [ 18%]
+test_outputs.py::test_handcrafted[downgrade_cancelled] FAILED            [ 20%]
+test_outputs.py::test_handcrafted[downgrade_deferred] FAILED             [ 22%]
+test_outputs.py::test_handcrafted[downgrade_early_renewal] FAILED        [ 25%]
+test_outputs.py::test_handcrafted[duplicate_events] FAILED               [ 27%]
+test_outputs.py::test_handcrafted[events_before_signup] FAILED           [ 29%]
+test_outputs.py::test_handcrafted[expire_then_grant_same_instant] FAILED [ 31%]
+test_outputs.py::test_handcrafted[grace_lapse_restart] FAILED            [ 34%]
+test_outputs.py::test_handcrafted[grace_renewal_within] FAILED           [ 36%]
+test_outputs.py::test_handcrafted[junk_user_and_revoked_pending] FAILED  [ 38%]
+test_outputs.py::test_handcrafted[lapse_boundary_second] FAILED          [ 40%]
+test_outputs.py::test_handcrafted[late_revocation_rewind] FAILED         [ 43%]
+test_outputs.py::test_handcrafted[late_scan_rewind] FAILED               [ 45%]
+test_outputs.py::test_handcrafted[late_subscription_start] FAILED        [ 47%]
+test_outputs.py::test_handcrafted[leap_day_yearly] FAILED                [ 50%]
+test_outputs.py::test_handcrafted[refund_debt_repay] FAILED              [ 52%]
+test_outputs.py::test_handcrafted[refund_unknown_and_twice] FAILED       [ 54%]
+test_outputs.py::test_handcrafted[revoke_yearly] FAILED                  [ 56%]
+test_outputs.py::test_handcrafted[same_second_events] FAILED             [ 59%]
+test_outputs.py::test_handcrafted[signup_twice_and_expiry] FAILED        [ 61%]
+test_outputs.py::test_handcrafted[spend_order_ties] FAILED               [ 63%]
 test_outputs.py::test_handcrafted[subscription_discards] FAILED          [ 65%]
-test_outputs.py::test_handcrafted[upgrade_forfeit] FAILED                [ 67%]
+test_outputs.py::test_handcrafted[upgrade_forfeit] FAILED                [ 68%]
 test_outputs.py::test_handcrafted[yearly_two_periods_downgrade] FAILED   [ 70%]
 test_outputs.py::test_random_feed_one_shot FAILED                        [ 72%]
-test_outputs.py::test_handcrafted_split[close_then_late_event] FAILED    [ 75%]
-test_outputs.py::test_handcrafted_split[duplicate_events] FAILED         [ 77%]
-test_outputs.py::test_handcrafted_split[late_revocation_rewind] FAILED   [ 80%]
-test_outputs.py::test_handcrafted_split[late_scan_rewind] FAILED         [ 82%]
-test_outputs.py::test_handcrafted_split[late_subscription_start] FAILED  [ 85%]
-test_outputs.py::test_sample_split FAILED                                [ 87%]
+test_outputs.py::test_handcrafted_split[amend_upgrade_proration] FAILED  [ 75%]
+test_outputs.py::test_handcrafted_split[close_then_late_event] FAILED    [ 77%]
+test_outputs.py::test_handcrafted_split[duplicate_events] FAILED         [ 79%]
+test_outputs.py::test_handcrafted_split[late_revocation_rewind] FAILED   [ 81%]
+test_outputs.py::test_handcrafted_split[late_scan_rewind] FAILED         [ 84%]
+test_outputs.py::test_handcrafted_split[late_subscription_start] FAILED  [ 86%]
+test_outputs.py::test_sample_split FAILED                                [ 88%]
 test_outputs.py::test_random_feed_split FAILED                           [ 90%]
-test_outputs.py::test_repeat_run_from_same_state_is_deterministic FAILED [ 92%]
+test_outputs.py::test_repeat_run_from_same_state_is_deterministic FAILED [ 93%]
 test_outputs.py::test_hand_computed_month_end_clamping FAILED            [ 95%]
 test_outputs.py::test_hand_computed_late_scan_rewind FAILED              [ 97%]
 test_outputs.py::test_hand_computed_refund_debt FAILED                   [100%]
@@ -52,8 +56,8 @@ ____________________ test_program_exists_and_is_executable _____________________
 >       assert os.path.isfile(AGENT), "%s is missing" % AGENT
 E       AssertionError: /app/ledger/rebuild is missing
 E       assert False
-E        +  where False = <function isfile at 0xe0d07a3dfba0>('/app/ledger/rebuild')
-E        +    where <function isfile at 0xe0d07a3dfba0> = <module 'posixpath' (frozen)>.isfile
+E        +  where False = <function isfile at 0xf06daad9fba0>('/app/ledger/rebuild')
+E        +    where <function isfile at 0xf06daad9fba0> = <module 'posixpath' (frozen)>.isfile
 E        +      where <module 'posixpath' (frozen)> = os.path
 
 test_outputs.py:321: AssertionError
@@ -69,9 +73,219 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/sample-d091a93d/feed.jsonl', state_in = None
+events_path = '/work/ref/sample-94e8861f/feed.jsonl', state_in = None
 as_of = '2026-09-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d07952dc50>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9eec510>, tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, work, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = work.agent_dir(tag)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        for p in (state_out, ledger, report):
+            if os.path.exists(p):
+                os.remove(p)
+        if as_of:
+            cmd += ["--as-of", as_of]
+        # Output goes to files, not pipes, so a child that keeps a pipe open cannot
+        # stall the verifier. The program runs in its own session so the whole
+        # group can be killed.
+        out_path = os.path.join(work.ref, tag + ".agent.stdout")
+        err_path = os.path.join(work.ref, tag + ".agent.stderr")
+        with open(out_path, "w") as out_fh, open(err_path, "w") as err_fh:
+            proc = subprocess.Popen(cmd, cwd=d, stdout=out_fh, stderr=err_fh, start_new_session=True)
+            try:
+                rc = proc.wait(timeout=RUN_TIMEOUT)
+            except subprocess.TimeoutExpired:
+                _kill_runner_processes(proc)
+                pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+            finally:
+                _kill_runner_processes(proc)
+        if rc != 0:
+            with open(out_path) as fh:
+                out_tail = fh.read()[-2000:]
+            with open(err_path) as fh:
+                err_tail = fh.read()[-2000:]
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (AGENT, rc, out_tail, err_tail))
+E           Failed: /app/ledger/rebuild exited with 127
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:225: Failed
+_____________________ test_handcrafted[amend_grace_window] _____________________
+
+name = 'amend_grace_window'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:333: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:282: in one_shot
+    got = run_agent(feed, None, sc["as_of"], work, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/ref/amend_grace_window-f160cb95/feed.jsonl'
+state_in = None, as_of = '2026-10-01T00:00:00Z'
+work = <test_outputs.Work object at 0xf06da9d77290>, tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, work, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = work.agent_dir(tag)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        for p in (state_out, ledger, report):
+            if os.path.exists(p):
+                os.remove(p)
+        if as_of:
+            cmd += ["--as-of", as_of]
+        # Output goes to files, not pipes, so a child that keeps a pipe open cannot
+        # stall the verifier. The program runs in its own session so the whole
+        # group can be killed.
+        out_path = os.path.join(work.ref, tag + ".agent.stdout")
+        err_path = os.path.join(work.ref, tag + ".agent.stderr")
+        with open(out_path, "w") as out_fh, open(err_path, "w") as err_fh:
+            proc = subprocess.Popen(cmd, cwd=d, stdout=out_fh, stderr=err_fh, start_new_session=True)
+            try:
+                rc = proc.wait(timeout=RUN_TIMEOUT)
+            except subprocess.TimeoutExpired:
+                _kill_runner_processes(proc)
+                pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+            finally:
+                _kill_runner_processes(proc)
+        if rc != 0:
+            with open(out_path) as fh:
+                out_tail = fh.read()[-2000:]
+            with open(err_path) as fh:
+                err_tail = fh.read()[-2000:]
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (AGENT, rc, out_tail, err_tail))
+E           Failed: /app/ledger/rebuild exited with 127
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:225: Failed
+_____________________ test_handcrafted[amend_signup_rules] _____________________
+
+name = 'amend_signup_rules'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:333: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:282: in one_shot
+    got = run_agent(feed, None, sc["as_of"], work, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/ref/amend_signup_rules-ebaba109/feed.jsonl'
+state_in = None, as_of = '2026-09-01T00:00:00Z'
+work = <test_outputs.Work object at 0xf06da9d46b90>, tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, work, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = work.agent_dir(tag)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        for p in (state_out, ledger, report):
+            if os.path.exists(p):
+                os.remove(p)
+        if as_of:
+            cmd += ["--as-of", as_of]
+        # Output goes to files, not pipes, so a child that keeps a pipe open cannot
+        # stall the verifier. The program runs in its own session so the whole
+        # group can be killed.
+        out_path = os.path.join(work.ref, tag + ".agent.stdout")
+        err_path = os.path.join(work.ref, tag + ".agent.stderr")
+        with open(out_path, "w") as out_fh, open(err_path, "w") as err_fh:
+            proc = subprocess.Popen(cmd, cwd=d, stdout=out_fh, stderr=err_fh, start_new_session=True)
+            try:
+                rc = proc.wait(timeout=RUN_TIMEOUT)
+            except subprocess.TimeoutExpired:
+                _kill_runner_processes(proc)
+                pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+            finally:
+                _kill_runner_processes(proc)
+        if rc != 0:
+            with open(out_path) as fh:
+                out_tail = fh.read()[-2000:]
+            with open(err_path) as fh:
+                err_tail = fh.read()[-2000:]
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (AGENT, rc, out_tail, err_tail))
+E           Failed: /app/ledger/rebuild exited with 127
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:225: Failed
+__________________ test_handcrafted[amend_upgrade_proration] ___________________
+
+name = 'amend_upgrade_proration'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:333: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:282: in one_shot
+    got = run_agent(feed, None, sc["as_of"], work, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/ref/amend_upgrade_proration-3aa90829/feed.jsonl'
+state_in = None, as_of = '2026-09-01T00:00:00Z'
+work = <test_outputs.Work object at 0xf06da9ec0450>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -139,9 +353,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/clamp_jan31_monthly-8be439dc/feed.jsonl'
+events_path = '/work/ref/clamp_jan31_monthly-b5592551/feed.jsonl'
 state_in = None, as_of = '2026-06-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0793a2290>, tag = 'one'
+work = <test_outputs.Work object at 0xf06daa03bd90>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -209,9 +423,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/close_then_late_event-42c61734/feed.jsonl'
+events_path = '/work/ref/close_then_late_event-cb619f0e/feed.jsonl'
 state_in = None, as_of = '2026-08-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079284650>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9c407d0>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -279,9 +493,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/debt_repaid_in_parts-0dde71d0/feed.jsonl'
+events_path = '/work/ref/debt_repaid_in_parts-7292a2c0/feed.jsonl'
 state_in = None, as_of = '2026-07-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d07939b2d0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06daa072910>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -349,9 +563,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/downgrade_cancelled-b97b3877/feed.jsonl'
+events_path = '/work/ref/downgrade_cancelled-5b20d49c/feed.jsonl'
 state_in = None, as_of = '2026-08-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079523390>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9e24a90>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -419,9 +633,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/downgrade_deferred-3f73648b/feed.jsonl'
+events_path = '/work/ref/downgrade_deferred-e16cb747/feed.jsonl'
 state_in = None, as_of = '2026-07-20T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0794fa310>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9ea0b50>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -489,9 +703,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/downgrade_early_renewal-89fbb86d/feed.jsonl'
+events_path = '/work/ref/downgrade_early_renewal-2a097e3c/feed.jsonl'
 state_in = None, as_of = '2026-08-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079387590>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9d69a10>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -559,9 +773,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/duplicate_events-7714f2f6/feed.jsonl', state_in = None
+events_path = '/work/ref/duplicate_events-935ee968/feed.jsonl', state_in = None
 as_of = '2026-05-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0794a4ad0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9d31590>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -629,9 +843,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/events_before_signup-e33d9038/feed.jsonl'
+events_path = '/work/ref/events_before_signup-4f3eb23f/feed.jsonl'
 state_in = None, as_of = '2026-05-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0794ceed0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9d21c50>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -699,9 +913,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/expire_then_grant_same_instant-17286ad2/feed.jsonl'
+events_path = '/work/ref/expire_then_grant_same_instant-aee50cdc/feed.jsonl'
 state_in = None, as_of = '2026-04-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0794d85d0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9e83c10>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -769,9 +983,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/grace_lapse_restart-8ef5397e/feed.jsonl'
+events_path = '/work/ref/grace_lapse_restart-f30b7d9f/feed.jsonl'
 state_in = None, as_of = '2026-06-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079375290>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9d83f90>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -839,9 +1053,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/grace_renewal_within-80a0c4e6/feed.jsonl'
+events_path = '/work/ref/grace_renewal_within-f95d1901/feed.jsonl'
 state_in = None, as_of = '2026-05-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d07952d210>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9c40710>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -909,9 +1123,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/junk_user_and_revoked_pending-19ff7959/feed.jsonl'
+events_path = '/work/ref/junk_user_and_revoked_pending-9a5f2a2c/feed.jsonl'
 state_in = None, as_of = '2026-03-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0793a6390>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9d38690>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -979,9 +1193,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/lapse_boundary_second-81b10009/feed.jsonl'
+events_path = '/work/ref/lapse_boundary_second-c2d9f7d9/feed.jsonl'
 state_in = None, as_of = '2026-06-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0792a72d0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9e8acd0>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1049,9 +1263,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/late_revocation_rewind-8971f0e0/feed.jsonl'
+events_path = '/work/ref/late_revocation_rewind-a6d5803e/feed.jsonl'
 state_in = None, as_of = '2026-06-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0793a2ad0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9c17690>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1119,9 +1333,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/late_scan_rewind-698f1bb1/feed.jsonl', state_in = None
+events_path = '/work/ref/late_scan_rewind-6bacb876/feed.jsonl', state_in = None
 as_of = '2026-04-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0793929d0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9cbefd0>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1189,9 +1403,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/late_subscription_start-dcb5d4f4/feed.jsonl'
+events_path = '/work/ref/late_subscription_start-63d66120/feed.jsonl'
 state_in = None, as_of = '2026-06-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079499910>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9d34990>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1259,9 +1473,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/leap_day_yearly-c18de8f5/feed.jsonl', state_in = None
+events_path = '/work/ref/leap_day_yearly-46bc21c5/feed.jsonl', state_in = None
 as_of = '2029-04-15T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0792ec990>, tag = 'one'
+work = <test_outputs.Work object at 0xf06daa072150>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1329,9 +1543,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/refund_debt_repay-22fa5bf4/feed.jsonl', state_in = None
+events_path = '/work/ref/refund_debt_repay-127b4991/feed.jsonl', state_in = None
 as_of = '2026-03-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d07936cbd0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9e60750>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1399,9 +1613,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/refund_unknown_and_twice-bc2819ad/feed.jsonl'
+events_path = '/work/ref/refund_unknown_and_twice-520e0f25/feed.jsonl'
 state_in = None, as_of = '2026-04-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0794a6690>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9cb4390>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1469,9 +1683,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/revoke_yearly-65d844f4/feed.jsonl', state_in = None
+events_path = '/work/ref/revoke_yearly-7822ea33/feed.jsonl', state_in = None
 as_of = '2026-09-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0796b6e90>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9e4cf90>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1539,9 +1753,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/same_second_events-de84db8a/feed.jsonl'
+events_path = '/work/ref/same_second_events-b995354b/feed.jsonl'
 state_in = None, as_of = '2026-03-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079362650>, tag = 'one'
+work = <test_outputs.Work object at 0xf06daa070390>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1609,9 +1823,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/signup_twice_and_expiry-33936419/feed.jsonl'
+events_path = '/work/ref/signup_twice_and_expiry-adb5bbe3/feed.jsonl'
 state_in = None, as_of = '2026-05-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d0794d8550>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9e7c890>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1679,9 +1893,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/spend_order_ties-cd50887f/feed.jsonl', state_in = None
+events_path = '/work/ref/spend_order_ties-d3cd7de5/feed.jsonl', state_in = None
 as_of = '2026-06-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079361590>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9ece6d0>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1749,9 +1963,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/subscription_discards-c93046df/feed.jsonl'
+events_path = '/work/ref/subscription_discards-7a566fab/feed.jsonl'
 state_in = None, as_of = '2026-05-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d07949a890>, tag = 'one'
+work = <test_outputs.Work object at 0xf06daa072910>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1819,9 +2033,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/upgrade_forfeit-46588b9e/feed.jsonl', state_in = None
+events_path = '/work/ref/upgrade_forfeit-be7989cf/feed.jsonl', state_in = None
 as_of = '2026-07-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079522fd0>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9ed4450>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1889,9 +2103,9 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/yearly_two_periods_downgrade-616d4e4e/feed.jsonl'
+events_path = '/work/ref/yearly_two_periods_downgrade-d5900bcc/feed.jsonl'
 state_in = None, as_of = '2026-11-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d07948f590>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9e8d550>, tag = 'one'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -1956,9 +2170,79 @@ test_outputs.py:282: in one_shot
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/random_20260906-48114426/feed.jsonl', state_in = None
+events_path = '/work/ref/random_20260906-c57d5667/feed.jsonl', state_in = None
 as_of = '2026-08-05T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d079384790>, tag = 'one'
+work = <test_outputs.Work object at 0xf06da9d2e610>, tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, work, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = work.agent_dir(tag)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        for p in (state_out, ledger, report):
+            if os.path.exists(p):
+                os.remove(p)
+        if as_of:
+            cmd += ["--as-of", as_of]
+        # Output goes to files, not pipes, so a child that keeps a pipe open cannot
+        # stall the verifier. The program runs in its own session so the whole
+        # group can be killed.
+        out_path = os.path.join(work.ref, tag + ".agent.stdout")
+        err_path = os.path.join(work.ref, tag + ".agent.stderr")
+        with open(out_path, "w") as out_fh, open(err_path, "w") as err_fh:
+            proc = subprocess.Popen(cmd, cwd=d, stdout=out_fh, stderr=err_fh, start_new_session=True)
+            try:
+                rc = proc.wait(timeout=RUN_TIMEOUT)
+            except subprocess.TimeoutExpired:
+                _kill_runner_processes(proc)
+                pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+            finally:
+                _kill_runner_processes(proc)
+        if rc != 0:
+            with open(out_path) as fh:
+                out_tail = fh.read()[-2000:]
+            with open(err_path) as fh:
+                err_tail = fh.read()[-2000:]
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (AGENT, rc, out_tail, err_tail))
+E           Failed: /app/ledger/rebuild exited with 127
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:225: Failed
+_______________ test_handcrafted_split[amend_upgrade_proration] ________________
+
+name = 'amend_upgrade_proration'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:342: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:305: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], work, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/ref/amend_upgrade_proration-split-8886bffe/chunk0.jsonl'
+state_in = None, as_of = None
+work = <test_outputs.Work object at 0xf06da95d5b90>, tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2026,9 +2310,9 @@ test_outputs.py:305: in split_runs
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/close_then_late_event-split-1e939e4d/chunk0.jsonl'
+events_path = '/work/ref/close_then_late_event-split-b318a9fc/chunk0.jsonl'
 state_in = None, as_of = '2026-05-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d078a5fb10>, tag = 'chunk0'
+work = <test_outputs.Work object at 0xf06daa0cc990>, tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2096,9 +2380,9 @@ test_outputs.py:305: in split_runs
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/duplicate_events-split-27ae573d/chunk0.jsonl'
+events_path = '/work/ref/duplicate_events-split-3f9eaa47/chunk0.jsonl'
 state_in = None, as_of = None
-work = <test_outputs.Work object at 0xe0d0792b5290>, tag = 'chunk0'
+work = <test_outputs.Work object at 0xf06da9c27390>, tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2166,9 +2450,9 @@ test_outputs.py:305: in split_runs
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/late_revocation_rewind-split-de22ee3b/chunk0.jsonl'
+events_path = '/work/ref/late_revocation_rewind-split-f9918d36/chunk0.jsonl'
 state_in = None, as_of = None
-work = <test_outputs.Work object at 0xe0d0796d6990>, tag = 'chunk0'
+work = <test_outputs.Work object at 0xf06da9c76050>, tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2236,9 +2520,9 @@ test_outputs.py:305: in split_runs
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/late_scan_rewind-split-a89b0616/chunk0.jsonl'
+events_path = '/work/ref/late_scan_rewind-split-55b6b160/chunk0.jsonl'
 state_in = None, as_of = None
-work = <test_outputs.Work object at 0xe0d0792f8650>, tag = 'chunk0'
+work = <test_outputs.Work object at 0xf06daa0114d0>, tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2306,9 +2590,9 @@ test_outputs.py:305: in split_runs
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/late_subscription_start-split-cec7fdd5/chunk0.jsonl'
+events_path = '/work/ref/late_subscription_start-split-a2abdb7e/chunk0.jsonl'
 state_in = None, as_of = None
-work = <test_outputs.Work object at 0xe0d0796d7b90>, tag = 'chunk0'
+work = <test_outputs.Work object at 0xf06da9d6cbd0>, tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2373,8 +2657,8 @@ test_outputs.py:305: in split_runs
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/sample-split-9c8bb727/chunk0.jsonl', state_in = None
-as_of = None, work = <test_outputs.Work object at 0xe0d078a93310>
+events_path = '/work/ref/sample-split-1c3e4b81/chunk0.jsonl', state_in = None
+as_of = None, work = <test_outputs.Work object at 0xf06da95ce550>
 tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
@@ -2440,9 +2724,9 @@ test_outputs.py:305: in split_runs
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/random_20260906-split-28edc6f8/chunk0.jsonl'
+events_path = '/work/ref/random_20260906-split-7815c177/chunk0.jsonl'
 state_in = None, as_of = None
-work = <test_outputs.Work object at 0xe0d079523450>, tag = 'chunk0'
+work = <test_outputs.Work object at 0xf06daa094450>, tag = 'chunk0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2511,8 +2795,8 @@ _______________ test_repeat_run_from_same_state_is_deterministic _______________
 test_outputs.py:361: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/determinism-45626383/c0.jsonl', state_in = None
-as_of = None, work = <test_outputs.Work object at 0xe0d078a8f5d0>, tag = 'c0'
+events_path = '/work/ref/determinism-a97ff358/c0.jsonl', state_in = None
+as_of = None, work = <test_outputs.Work object at 0xf06da945c190>, tag = 'c0'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2580,9 +2864,9 @@ test_outputs.py:383: in _run_by_hand
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/clamp_jan31_monthly-hand-2d3ea061/feed.jsonl'
+events_path = '/work/ref/clamp_jan31_monthly-hand-7344151c/feed.jsonl'
 state_in = None, as_of = '2026-06-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d078ac3210>, tag = 'hand'
+work = <test_outputs.Work object at 0xf06da946f290>, tag = 'hand'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2651,9 +2935,9 @@ test_outputs.py:383: in _run_by_hand
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/late_scan_rewind-hand-5b039938/feed.jsonl'
+events_path = '/work/ref/late_scan_rewind-hand-6cbd25c0/feed.jsonl'
 state_in = None, as_of = '2026-04-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d078a8d590>, tag = 'hand'
+work = <test_outputs.Work object at 0xf06da945c490>, tag = 'hand'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2721,9 +3005,9 @@ test_outputs.py:383: in _run_by_hand
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-events_path = '/work/ref/refund_debt_repay-hand-c5597e20/feed.jsonl'
+events_path = '/work/ref/refund_debt_repay-hand-9a358b0e/feed.jsonl'
 state_in = None, as_of = '2026-03-01T00:00:00Z'
-work = <test_outputs.Work object at 0xe0d078b71590>, tag = 'hand'
+work = <test_outputs.Work object at 0xf06da944c550>, tag = 'hand'
 
     def run_agent(events_path, state_in, as_of, work, tag):
         """Run the agent program as the runner user inside its own directory."""
@@ -2779,6 +3063,9 @@ test_outputs.py:225: Failed
 =========================== short test summary info ============================
 FAILED test_outputs.py::test_program_exists_and_is_executable - AssertionErro...
 FAILED test_outputs.py::test_sample_feed - Failed: /app/ledger/rebuild exited...
+FAILED test_outputs.py::test_handcrafted[amend_grace_window] - Failed: /app/l...
+FAILED test_outputs.py::test_handcrafted[amend_signup_rules] - Failed: /app/l...
+FAILED test_outputs.py::test_handcrafted[amend_upgrade_proration] - Failed: /...
 FAILED test_outputs.py::test_handcrafted[clamp_jan31_monthly] - Failed: /app/...
 FAILED test_outputs.py::test_handcrafted[close_then_late_event] - Failed: /ap...
 FAILED test_outputs.py::test_handcrafted[debt_repaid_in_parts] - Failed: /app...
@@ -2806,6 +3093,7 @@ FAILED test_outputs.py::test_handcrafted[subscription_discards] - Failed: /ap...
 FAILED test_outputs.py::test_handcrafted[upgrade_forfeit] - Failed: /app/ledg...
 FAILED test_outputs.py::test_handcrafted[yearly_two_periods_downgrade] - Fail...
 FAILED test_outputs.py::test_random_feed_one_shot - Failed: /app/ledger/rebui...
+FAILED test_outputs.py::test_handcrafted_split[amend_upgrade_proration] - Fai...
 FAILED test_outputs.py::test_handcrafted_split[close_then_late_event] - Faile...
 FAILED test_outputs.py::test_handcrafted_split[duplicate_events] - Failed: /a...
 FAILED test_outputs.py::test_handcrafted_split[late_revocation_rewind] - Fail...
@@ -2817,4 +3105,4 @@ FAILED test_outputs.py::test_repeat_run_from_same_state_is_deterministic - Fa...
 FAILED test_outputs.py::test_hand_computed_month_end_clamping - Failed: /app/...
 FAILED test_outputs.py::test_hand_computed_late_scan_rewind - Failed: /app/le...
 FAILED test_outputs.py::test_hand_computed_refund_debt - Failed: /app/ledger/...
-============================== 40 failed in 1.39s ==============================
+============================== 44 failed in 2.36s ==============================
