@@ -13,10 +13,11 @@ The task lives in `tasks/iap-ledger-rebuild/`. Start with its
 Forage is a mobile app that sells scan credits through App Store top-ups and
 subscriptions. The stored balances drifted. Finance approved a precise ledger
 policy. The agent must write a program that rebuilds the credit ledger from
-the raw event feed under that policy. The feed is out of order and contains
-duplicates. The ledger is append-only, so late events produce reversal
-postings. The program must also work in checkpointed runs, with only its own
-state file carried between runs.
+the raw event feed under that policy and four later amendments. The feed is
+out of order and contains duplicates. The ledger is append-only, so late
+events produce reversal postings, and the wrong lines the legacy job already
+wrote must be corrected the same way. The program must also work in
+checkpointed runs, with only its own state file carried between runs.
 
 ## Results at a glance
 

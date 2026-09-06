@@ -53,11 +53,11 @@ scripts/run_validate.sh
 | oracle | 1.0 | 30 s | `results/validate-oracle/` |
 | nop | 0.0 | 27 s | `results/validate-nop/` |
 
-Both images build from `node:22.23.2-bookworm-slim`. The verifier runs 40
-pytest tests: 26 hand-written scenarios, the sample feed, a seeded random feed
-of 3365 lines, 7 checkpoint-split runs, a determinism run, an existence check
-and 3 cases with hand-derived expected values. With the reference solution all
-40 pass. With no agent output every test fails because `/app/ledger/rebuild`
+Both images build from `node:22.23.2-bookworm-slim`. The verifier runs 52
+pytest tests: 29 hand-written scenarios, the sample feed, a seeded random feed
+of 3365 lines, 7 checkpoint-split runs, 8 legacy reconciliation runs, a
+determinism run, an existence check and 3 cases with hand-derived expected
+values. With the reference solution all 52 pass. With no agent output every test fails because `/app/ledger/rebuild`
 does not exist.
 
 ### 3.1 Anti-cheat probe
@@ -71,7 +71,7 @@ write `/logs/verifier/reward.txt`. Run with:
 scripts/run_probe.sh scripts/cheat_probe
 ```
 
-Result: reward 0, 39 of 40 tests fail (`results/probe-cheat.txt`). The same
+Result: reward 0, 51 of 52 tests fail (`results/probe-cheat.txt`). The same
 script with the reference gives reward 1 (`results/probe-reference.txt`).
 
 An earlier version of the verifier wrote the reference outputs into a
@@ -123,7 +123,17 @@ amendments), graded by the amended verifier:
 Both would have passed the base policy. Four of five solvers clear the base
 task. The amendments are what stops them.
 
-Round 2, hardened spec with amendments: PENDING
+Round 2, hardened spec with amendments only: PENDING
+
+Second hardening, added before round 2 finished: the ledger already holds the
+lines the legacy job wrote before the cutover. The first run receives them
+with `--legacy-ledger`, must keep them, continue `seq`, and correct the wrong
+ones with reversals under the same rule. The legacy job
+(`environment/legacy/ledger.js`) now also writes its buggy ledger, and the
+verifier runs it on a feed prefix at verify time. Eight verifier tests cover
+this, bringing the verifier to 52 tests.
+
+Round 3, amendments plus legacy reconciliation: PENDING
 
 ## 4. Standard agent trials
 
