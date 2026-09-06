@@ -293,18 +293,34 @@ class Replay:
 
     # ---- driver ---------------------------------------------------------
 
+    def step(self, e):
+        t = e["_t"]
+        if self.clock is None or t > self.clock:
+            self.clock = t
+            self.run_due_timers()
+        self.apply(e)
+        self.run_due_timers()
+
     def run(self):
         for e in self.events:
-            t = e["_t"]
-            if self.clock is None or t > self.clock:
-                self.clock = t
-                self.run_due_timers()
-            self.apply(e)
-            self.run_due_timers()
+            self.step(e)
+        self.advance_to_close()
+        return self.postings
+
+    def advance_to_close(self):
         if self.close is not None and (self.clock is None or self.close > self.clock):
             self.clock = self.close
             self.run_due_timers()
-        return self.postings
+
+    def can_extend(self, e):
+        """True when applying e after the current clock gives the same result
+        as a full replay: e is not earlier than anything already applied."""
+        return self.clock is None or e["_t"] >= self.clock
+
+    def extend(self, e):
+        self.events.append(e)
+        self.step(e)
+        self.advance_to_close()
 
     def report(self):
         buckets = [b for b in self.buckets.values() if b["remaining"] > 0]
@@ -348,6 +364,7 @@ class Ledger:
         self.seen = set(state["seen"])
         self.users = state["users"]
         self.out = []
+        self.replays = {}
 
     def state(self):
         return {
@@ -366,13 +383,31 @@ class Ledger:
         self.out.append(line)
         return line
 
-    def update_user(self, user_id, cause):
+    def replay_for(self, user_id):
+        rp = self.replays.get(user_id)
+        if rp is None or rp.close != self.close:
+            rp = Replay(self.products, user_id, self.users[user_id]["events"], self.close)
+            rp.run()
+            self.replays[user_id] = rp
+        return rp
+
+    def update_user(self, user_id, cause, new_event=None):
         u = self.users[user_id]
-        new = Replay(self.products, user_id, u["events"], self.close).run()
         old = u["emitted"]
-        n = 0
-        while n < len(old) and n < len(new) and same_posting(old[n], new[n]):
-            n += 1
+        rp = self.replays.get(user_id)
+        if new_event is not None and rp is not None and rp.close == self.close and rp.can_extend(new_event):
+            # On-time event: the canonical sequence only grows. No prefix
+            # comparison is needed.
+            rp.extend(new_event)
+            new = rp.postings
+            n = len(old)
+        else:
+            self.replays.pop(user_id, None)
+            rp = self.replay_for(user_id)
+            new = rp.postings
+            n = 0
+            while n < len(old) and n < len(new) and same_posting(old[n], new[n]):
+                n += 1
         running = old[-1]["balance_after"] if old else 0
         for p in reversed(old[n:]):
             running -= p["delta"]
@@ -401,7 +436,7 @@ class Ledger:
         self.arrival += 1
         u = self.users.setdefault(e["user_id"], {"events": [], "emitted": []})
         u["events"].append(e)
-        self.update_user(e["user_id"], e["id"])
+        self.update_user(e["user_id"], e["id"], new_event=e)
 
     def close_pass(self, as_of):
         t = parse_ts(as_of)
@@ -413,9 +448,7 @@ class Ledger:
     def report(self):
         users = {}
         for user_id in sorted(self.users):
-            rp = Replay(self.products, user_id, self.users[user_id]["events"], self.close)
-            rp.run()
-            users[user_id] = rp.report()
+            users[user_id] = self.replay_for(user_id).report()
         return {"as_of": fmt_ts(self.close), "users": users}
 
 
