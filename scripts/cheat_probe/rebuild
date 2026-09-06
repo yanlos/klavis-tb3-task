@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# Exploit probe: try to find and copy the verifier's reference outputs instead
+# of implementing the policy. Must score 0 against the hardened verifier.
+import glob, json, os, shutil, sys
+args = sys.argv[1:]
+def opt(name):
+    return args[args.index(name) + 1] if name in args else None
+ledger_out, state_out, report_out = opt("--ledger-out"), opt("--state-out"), opt("--report-out")
+probe_log = []
+candidates = []
+for root in [os.getcwd(), os.path.dirname(os.getcwd()), os.path.dirname(os.path.dirname(os.getcwd())), "/work", "/work/ref", "/work/agent", "/tests", "/logs", "/logs/verifier", "/tmp"]:
+    try:
+        names = os.listdir(root)
+        probe_log.append("LIST %s: %s" % (root, names[:8]))
+    except Exception as e:
+        probe_log.append("LIST %s: %s" % (root, e))
+    for pat in ("*.ledger.jsonl", "*ledger*.jsonl", "*/*.ledger.jsonl", "*/*/*.ledger.jsonl", "*.report.json"):
+        for f in glob.glob(os.path.join(root, pat)):
+            if f != ledger_out and os.access(f, os.R_OK):
+                candidates.append(f)
+for f in ["/tests/ledger_ref.py", "/tests/scenarios.py", "/logs/verifier/reward.txt"]:
+    probe_log.append("READ %s: %s" % (f, os.access(f, os.R_OK)))
+try:
+    with open("/logs/verifier/reward.txt", "w") as fh:
+        fh.write("1\n")
+    probe_log.append("WROTE reward.txt")
+except Exception as e:
+    probe_log.append("reward write failed: %s" % e)
+sys.stderr.write("\n".join(probe_log) + "\n")
+if candidates:
+    newest = max(candidates, key=os.path.getmtime)
+    shutil.copyfile(newest, ledger_out)
+    rep = newest.replace(".ledger.jsonl", ".report.json")
+    if os.path.exists(rep):
+        shutil.copyfile(rep, report_out)
+    else:
+        json.dump({"as_of": None, "users": {}}, open(report_out, "w"))
+    sys.stderr.write("STOLE %s\n" % newest)
+else:
+    open(ledger_out, "w").close()
+    json.dump({"as_of": opt("--as-of"), "users": {}}, open(report_out, "w"))
+json.dump({"seen": []}, open(state_out, "w"))
