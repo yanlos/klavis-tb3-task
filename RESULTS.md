@@ -15,7 +15,8 @@ scripts/run_static_checks.sh
 
 This runs every `scripts/checks/check-*.sh` from the TB3 repository against
 `tasks/iap-ledger-rebuild`. Result on 2026-09-06: 22 checks, 0 failures.
-Output: `results/static-checks.txt`.
+Output: `results/static-checks.txt`. The checks need Python 3.11 or later
+for `tomllib`; `scripts/env.sh` creates a `uv` virtual environment for that.
 
 ## 2. Implementation rubric
 
@@ -37,12 +38,35 @@ scripts/run_validate.sh
 
 | run | reward | runtime | output |
 |---|---|---|---|
-| oracle | 1.0 | 41 s | `results/validate-oracle/` |
-| nop | 0.0 | 26 s | `results/validate-nop/` |
+| oracle | 1.0 | 30 s | `results/validate-oracle/` |
+| nop | 0.0 | 27 s | `results/validate-nop/` |
 
-Both images build from `node:22-bookworm-slim`. The verifier runs 35 pytest
-tests. With the reference solution all 35 pass. With no agent output the
-first test fails because `/app/ledger/rebuild` does not exist.
+Both images build from `node:22.23.2-bookworm-slim`. The verifier runs 40
+pytest tests: 26 hand-written scenarios, the sample feed, a seeded random feed
+of 3365 lines, 7 checkpoint-split runs, a determinism run, an existence check
+and 3 cases with hand-derived expected values. With the reference solution all
+40 pass. With no agent output every test fails because `/app/ledger/rebuild`
+does not exist.
+
+### 3.1 Anti-cheat probe
+
+`scripts/cheat_probe/rebuild` is a program that does no ledger work. It
+searches its working directory, the parent directories, `/work`, `/tests` and
+`/logs` for reference outputs, copies the newest one it can read, and tries to
+write `/logs/verifier/reward.txt`. Run with:
+
+```
+scripts/run_probe.sh scripts/cheat_probe
+```
+
+Result: reward 0, 39 of 40 tests fail (`results/probe-cheat.txt`). The same
+script with the reference gives reward 1 (`results/probe-reference.txt`).
+
+An earlier version of the verifier wrote the reference outputs into a
+directory the unprivileged runner owned. An adversarial review found that
+bypass before any trial ran. The fix moved every reference file under a
+root-only directory, gave the agent a run directory whose parents are
+root-owned with mode 711, and set a strict umask.
 
 ## 4. Standard agent trials
 
