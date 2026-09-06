@@ -29,8 +29,9 @@ from the catalog.
 
 Change: when the `signup` event has an `occurred_at` on or after
 `2026-05-01T00:00:00Z`, the signup bucket expires at
-`days_after(occurred_at, 60)`. For earlier signups the value stays 90 days.
-The signup credit amount does not change.
+`days_after(occurred_at, 60)`. For earlier signups the catalog value
+`signup.expiry_days` (90) stays in force. The signup credit amount does not
+change.
 
 ## Amendment 3. Signup credits never repay debt
 
@@ -66,8 +67,11 @@ changes:
 6. After the term, anchor and plan are updated as section 4.7 says, but before
    `pay_period(first_cycle = 0)` runs, call
    `grant(bucket_id = "prorate:<subscription_id>:<old_term>:<k>", credits = prorated, expires_at = months_after(occurred_at, 1))`.
-   The bucket has `kind = "proration"`. This grant repays debt like every
-   other grant that is not a signup grant.
+   The bucket has `kind = "proration"`. It is not a subscription bucket: it
+   has no `subscription_id`, `term` or `cycle`, so `forfeit` never takes it and
+   a later revocation or upgrade leaves it alone. It expires like any other
+   bucket. This grant repays debt like every other grant that is not a signup
+   grant.
 
 So the posting order for an upgrade is: the forfeit postings of section 5.6,
 then the proration grant, then the cycle 0 grant of the new term.

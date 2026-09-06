@@ -123,7 +123,15 @@ amendments), graded by the amended verifier:
 Both would have passed the base policy. Four of five solvers clear the base
 task. The amendments are what stops them.
 
-Round 2, hardened spec with amendments only: PENDING
+Round 2, hardened spec with amendments only, graded by the 52-test verifier:
+
+| solver | language | verifier result |
+|---|---|---|
+| 6 | Python | 44 of 52; the 8 failures are the legacy tests it never saw |
+| 7 | Node | 44 of 52; the 8 failures are the legacy tests it never saw |
+
+Both implemented all four amendments correctly. The amendments alone do not
+stop a maximum-effort agent that reads every document.
 
 Second hardening, added before round 2 finished: the ledger already holds the
 lines the legacy job wrote before the cutover. The first run receives them
