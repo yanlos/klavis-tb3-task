@@ -391,6 +391,33 @@ class Ledger:
         self.out = []
         self.replays = {}
 
+    def load_legacy(self, path):
+        """Seed the emitted ledger of each user with the legacy job's lines.
+
+        The legacy lines are `old` for the user (policy section 6). seq
+        continues after the largest legacy seq.
+        """
+        with open(path) as fh:
+            for raw in fh:
+                raw = raw.strip()
+                if not raw:
+                    continue
+                p = json.loads(raw)
+                u = self.users.setdefault(p["user_id"], {"events": [], "emitted": []})
+                u["emitted"].append({
+                    "seq": p["seq"],
+                    "at": p["at"],
+                    "user_id": p["user_id"],
+                    "event_id": p.get("event_id"),
+                    "kind": p["kind"],
+                    "bucket_id": p.get("bucket_id"),
+                    "delta": p["delta"],
+                    "balance_after": p["balance_after"],
+                    "detail": p.get("detail"),
+                })
+                if p["seq"] > self.seq:
+                    self.seq = p["seq"]
+
     def state(self):
         return {
             "version": 1,
@@ -485,6 +512,7 @@ def main(argv=None):
     ap.add_argument("--ledger-out", required=True)
     ap.add_argument("--as-of")
     ap.add_argument("--report-out")
+    ap.add_argument("--legacy-ledger")
     ap.add_argument("--products", default=DEFAULT_PRODUCTS)
     args = ap.parse_args(argv)
 
@@ -495,6 +523,8 @@ def main(argv=None):
         with open(args.state_in) as fh:
             state = json.load(fh)
     ledger = Ledger(products, state)
+    if args.legacy_ledger:
+        ledger.load_legacy(args.legacy_ledger)
 
     with open(args.events) as fh:
         for raw in fh:

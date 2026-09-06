@@ -9,6 +9,8 @@ Each scenario is a dict with these keys:
   splits  : optional list of line indices where the checkpoint test cuts the feed
   chunk_as_of : optional list with one --as-of value (or None) per chunk. When
             absent, only the last chunk receives as_of.
+  legacy_cut : optional number of leading lines that the legacy job processed
+            before the cutover. Default: three fifths of the feed.
 
 The random scenario and the hand written cases are generated here at verify
 time. The same code produces the sample data in the agent image.
@@ -564,7 +566,7 @@ def sample():
     t2 = ts("2026-05-02T00:00:00Z")
     b.add("u_cara", "signup", t2)
     b.add("u_cara", "scan", t2 + DAY, credits=12)
-    return {"name": "sample", "lines": b.lines(), "as_of": "2026-09-01T00:00:00Z", "splits": [9]}
+    return {"name": "sample", "lines": b.lines(), "as_of": "2026-09-01T00:00:00Z", "splits": [9], "legacy_cut": 12}
 
 
 def write_lines(path, lines):
