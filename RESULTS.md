@@ -80,6 +80,40 @@ bypass before any trial ran. The fix moved every reference file under a
 root-only directory, gave the agent a run directory whose parents are
 root-owned with mode 711, and set a strict umask.
 
+## 3.2 Difficulty probes before the trials
+
+Before spending the real trials, clean-room solver agents (Claude Fable 5.1,
+maximum effort, no access to the reference or the verifier) were given only
+the agent-visible files in a sandbox and asked to write `/app/ledger/rebuild`.
+Their programs were then graded by the real verifier image with
+`scripts/run_probe.sh`.
+
+Round 1, base policy only (before the amendments), first spec wording:
+
+| solver | language | verifier result |
+|---|---|---|
+| 1 | Python | 40 of 40 pass, reward 1 |
+| 2 | Node | 0: failed 2 base cases (late subscription start, spend order ties) |
+| 3 | Python | 40 of 40 pass, reward 1 |
+
+Two of three passed. Both Python solvers wrote their own brute-force
+cross-checks and random feed generators, and both chose the same literal
+readings of the eleven ambiguities that the adversarial spec review later
+found. The Node solver spent about an hour and still missed two base rules. Conclusion: a
+precise policy plus a complete sample lets a strong agent finish the base
+task. That is too easy for the TB3 bar.
+
+Change: Finance amendments in `environment/docs/POLICY-AMENDMENTS.md`. Two
+are effective dated (grace window 10 days for cycle boundaries from
+2026-07-01, signup credits expire after 60 days for signups from 2026-05-01),
+one removes debt repayment from signup grants, and one adds a prorated credit
+on upgrade with integer round-half-up arithmetic over the clamped cycle
+length. The instruction points at the directory and says amendments win.
+Three new verifier cases cover them. The two round 1 programs that passed
+now score reward 0 with 15 of 44 tests failing.
+
+Round 2, hardened spec: PENDING
+
 ## 4. Standard agent trials
 
 Configuration is the TB3 CI default from `.github/harbor-run-defaults.yml`:
