@@ -122,3 +122,37 @@ visibly yours, idea 2 or idea 4 tells a story straight from your commits, and
 you can describe the incident from memory in the README. Idea 2 is the
 cheapest to build next. Idea 4 is the most convincing as expert work but needs
 a database sidecar in the verifier.
+
+## 6. OpenTelemetry exporter growth and rejected exports (LSS)
+
+Source: the Linode Statistics Service (LSS), a Go microservice that collects
+guest statistics through an OpenTelemetry pipeline and is replacing a legacy
+vbin stats system. Defect: the OTel SDK kept cumulative aggregation state for
+the life of the process. Memory grew without bound and OTLP export payloads
+grew with it. Once a payload crossed the size limit of the Traefik ingress
+proxy, the proxy answered HTTP 400 and metrics stopped shipping silently. Fix:
+switch the SDK temporality selector to delta with `WithTemporalitySelector`,
+so aggregation state resets after each export and payload size and memory stay
+bounded.
+
+Shape: a Go service with an OTel metrics pipeline, a mock collector behind a
+proxy with a payload size limit, and a synthetic load with growing label
+cardinality. Metrics stop arriving after some minutes. Make every metric ship
+and keep the downstream totals correct.
+
+Crux: cumulative versus delta temporality. Switching to delta is one line, but
+then the downstream consumer must sum deltas instead of taking the latest
+value, histograms need the same treatment, a process restart must not double
+count, and the label cardinality must be capped so a single export cannot
+grow past the proxy limit even with delta.
+
+Verifier: replay a fixed load with a fake clock, record every export at the
+mock collector, and check that no export was rejected, that every export
+stays under the size limit, that the reconstructed totals per metric equal
+the ground truth from the load generator, and that the SDK state size after
+N export cycles is bounded. Use payload sizes and state sizes, not RSS, so
+the checks are deterministic.
+
+Risk: needs Go in both images and a mock collector in the verifier. The
+difficulty is real observability expertise, which fits the TB3 bar well. This
+is the strongest candidate if you want a task that is unmistakably yours.
