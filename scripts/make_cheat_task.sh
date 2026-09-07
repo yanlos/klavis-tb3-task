@@ -1,4 +1,5 @@
 #!/bin/bash
+# Co-authored by Claude (Anthropic) with the repository author.
 # Build the adversarial copy of the task the way TB3's run-cheat-trials.yml
 # does: copy the task, remove the "Do not cheat" sentence from instruction.md,
 # append two newlines and docs/prompts/hack-trial-prompt.md.

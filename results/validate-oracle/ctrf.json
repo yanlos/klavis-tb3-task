@@ -1,7 +1,7 @@
 {
     "reportFormat": "CTRF",
     "specVersion": "0.0.0",
-    "timestamp": "2026-09-06T22:47:15.580977+00:00",
+    "timestamp": "2026-09-08T20:00:32.798019+00:00",
     "generatedBy": "pytest",
     "results": {
         "tool": {
@@ -9,14 +9,14 @@
             "version": "9.1.1"
         },
         "summary": {
-            "tests": 52,
-            "passed": 52,
+            "tests": 57,
+            "passed": 57,
             "failed": 0,
             "skipped": 0,
             "pending": 0,
             "other": 0,
-            "start": 1788734827979,
-            "stop": 1788734835580
+            "start": 1788896620044,
+            "stop": 1788897632796
         },
         "environment": {
             "buildName": "Pytest JSON CTRF Report",
@@ -28,26 +28,26 @@
                 "name": "test_outputs.py::test_program_exists_and_is_executable",
                 "status": "passed",
                 "duration": 1,
-                "start": 1788734828013,
-                "stop": 1788734828014,
+                "start": 1788896620081,
+                "stop": 1788896620082,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_sample_feed",
                 "status": "passed",
-                "duration": 81,
-                "start": 1788734828014,
-                "stop": 1788734828095,
+                "duration": 92,
+                "start": 1788896620082,
+                "stop": 1788896620174,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 73,
-                "start": 1788734828095,
-                "stop": 1788734828168,
+                "duration": 90,
+                "start": 1788896620175,
+                "stop": 1788896620265,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -57,9 +57,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 75,
-                "start": 1788734828169,
-                "stop": 1788734828244,
+                "duration": 94,
+                "start": 1788896620265,
+                "stop": 1788896620359,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -69,9 +69,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 68,
-                "start": 1788734828244,
-                "stop": 1788734828312,
+                "duration": 91,
+                "start": 1788896620359,
+                "stop": 1788896620450,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -81,9 +81,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 51,
-                "start": 1788734828312,
-                "stop": 1788734828363,
+                "duration": 95,
+                "start": 1788896620450,
+                "stop": 1788896620545,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -93,9 +93,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 55,
-                "start": 1788734828364,
-                "stop": 1788734828419,
+                "duration": 89,
+                "start": 1788896620545,
+                "stop": 1788896620634,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -105,9 +105,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 51,
-                "start": 1788734828419,
-                "stop": 1788734828470,
+                "duration": 97,
+                "start": 1788896620634,
+                "stop": 1788896620731,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -117,9 +117,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 77,
-                "start": 1788734828470,
-                "stop": 1788734828547,
+                "duration": 92,
+                "start": 1788896620731,
+                "stop": 1788896620823,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -129,9 +129,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 73,
-                "start": 1788734828548,
-                "stop": 1788734828621,
+                "duration": 91,
+                "start": 1788896620823,
+                "stop": 1788896620914,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -141,9 +141,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 75,
-                "start": 1788734828622,
-                "stop": 1788734828697,
+                "duration": 91,
+                "start": 1788896620914,
+                "stop": 1788896621005,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -153,9 +153,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 70,
-                "start": 1788734828697,
-                "stop": 1788734828767,
+                "duration": 94,
+                "start": 1788896621005,
+                "stop": 1788896621099,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -165,9 +165,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 73,
-                "start": 1788734828767,
-                "stop": 1788734828840,
+                "duration": 95,
+                "start": 1788896621099,
+                "stop": 1788896621194,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -177,9 +177,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 73,
-                "start": 1788734828840,
-                "stop": 1788734828913,
+                "duration": 90,
+                "start": 1788896621195,
+                "stop": 1788896621285,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -189,105 +189,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 68,
-                "start": 1788734828914,
-                "stop": 1788734828982,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 77,
-                "start": 1788734828982,
-                "stop": 1788734829059,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 71,
-                "start": 1788734829059,
-                "stop": 1788734829130,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 71,
-                "start": 1788734829130,
-                "stop": 1788734829201,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 78,
-                "start": 1788734829201,
-                "stop": 1788734829279,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 58,
-                "start": 1788734829279,
-                "stop": 1788734829337,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 70,
-                "start": 1788734829337,
-                "stop": 1788734829407,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 72,
-                "start": 1788734829408,
-                "stop": 1788734829480,
-                "retries": 0,
-                "file_path": "test_outputs.py",
-                "tags": [
-                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
-                ]
-            },
-            {
-                "name": "test_outputs.py::test_handcrafted",
-                "status": "passed",
-                "duration": 74,
-                "start": 1788734829480,
-                "stop": 1788734829554,
+                "duration": 93,
+                "start": 1788896621286,
+                "stop": 1788896621379,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -298,8 +202,8 @@
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
                 "duration": 73,
-                "start": 1788734829554,
-                "stop": 1788734829627,
+                "start": 1788896621379,
+                "stop": 1788896621452,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -309,9 +213,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 70,
-                "start": 1788734829627,
-                "stop": 1788734829697,
+                "duration": 91,
+                "start": 1788896621452,
+                "stop": 1788896621543,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -321,9 +225,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 75,
-                "start": 1788734829697,
-                "stop": 1788734829772,
+                "duration": 91,
+                "start": 1788896621543,
+                "stop": 1788896621634,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -333,9 +237,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 62,
-                "start": 1788734829772,
-                "stop": 1788734829834,
+                "duration": 92,
+                "start": 1788896621634,
+                "stop": 1788896621726,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -345,9 +249,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 61,
-                "start": 1788734829835,
-                "stop": 1788734829896,
+                "duration": 88,
+                "start": 1788896621726,
+                "stop": 1788896621814,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -357,9 +261,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 51,
-                "start": 1788734829896,
-                "stop": 1788734829947,
+                "duration": 91,
+                "start": 1788896621814,
+                "stop": 1788896621905,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -369,9 +273,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 58,
-                "start": 1788734829947,
-                "stop": 1788734830005,
+                "duration": 95,
+                "start": 1788896621905,
+                "stop": 1788896622000,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -381,9 +285,105 @@
             {
                 "name": "test_outputs.py::test_handcrafted",
                 "status": "passed",
-                "duration": 70,
-                "start": 1788734830006,
-                "stop": 1788734830076,
+                "duration": 95,
+                "start": 1788896622000,
+                "stop": 1788896622095,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 91,
+                "start": 1788896622095,
+                "stop": 1788896622186,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 90,
+                "start": 1788896622186,
+                "stop": 1788896622276,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 90,
+                "start": 1788896622276,
+                "stop": 1788896622366,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 88,
+                "start": 1788896622367,
+                "stop": 1788896622455,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 95,
+                "start": 1788896622456,
+                "stop": 1788896622551,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 90,
+                "start": 1788896622551,
+                "stop": 1788896622641,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 93,
+                "start": 1788896622641,
+                "stop": 1788896622734,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "tags": [
+                    "parametrize::name::['amend_grace_window', 'amend_signup_rules', 'amend_upgrade_proration', 'clamp_jan31_monthly', 'close_then_late_event', 'debt_repaid_in_parts', 'downgrade_cancelled', 'downgrade_deferred', 'downgrade_early_renewal', 'duplicate_events', 'events_before_signup', 'expire_then_grant_same_instant', 'grace_lapse_restart', 'grace_renewal_within', 'junk_user_and_revoked_pending', 'lapse_boundary_second', 'late_revocation_rewind', 'late_scan_rewind', 'late_subscription_start', 'leap_day_yearly', 'refund_debt_repay', 'refund_unknown_and_twice', 'revoke_yearly', 'same_second_events', 'signup_twice_and_expiry', 'spend_order_ties', 'subscription_discards', 'upgrade_forfeit', 'yearly_two_periods_downgrade']"
+                ]
+            },
+            {
+                "name": "test_outputs.py::test_handcrafted",
+                "status": "passed",
+                "duration": 95,
+                "start": 1788896622734,
+                "stop": 1788896622829,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -393,18 +393,18 @@
             {
                 "name": "test_outputs.py::test_random_feed_one_shot",
                 "status": "passed",
-                "duration": 435,
-                "start": 1788734830076,
-                "stop": 1788734830511,
+                "duration": 403,
+                "start": 1788896622829,
+                "stop": 1788896623232,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 135,
-                "start": 1788734830512,
-                "stop": 1788734830647,
+                "duration": 188,
+                "start": 1788896623233,
+                "stop": 1788896623421,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -414,9 +414,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 142,
-                "start": 1788734830647,
-                "stop": 1788734830789,
+                "duration": 190,
+                "start": 1788896623421,
+                "stop": 1788896623611,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -426,9 +426,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 207,
-                "start": 1788734830790,
-                "stop": 1788734830997,
+                "duration": 271,
+                "start": 1788896623611,
+                "stop": 1788896623882,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -438,9 +438,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 120,
-                "start": 1788734830997,
-                "stop": 1788734831117,
+                "duration": 185,
+                "start": 1788896623883,
+                "stop": 1788896624068,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -450,9 +450,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 93,
-                "start": 1788734831118,
-                "stop": 1788734831211,
+                "duration": 183,
+                "start": 1788896624069,
+                "stop": 1788896624252,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -462,9 +462,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_split",
                 "status": "passed",
-                "duration": 102,
-                "start": 1788734831211,
-                "stop": 1788734831313,
+                "duration": 189,
+                "start": 1788896624252,
+                "stop": 1788896624441,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -474,36 +474,36 @@
             {
                 "name": "test_outputs.py::test_sample_split",
                 "status": "passed",
-                "duration": 128,
-                "start": 1788734831313,
-                "stop": 1788734831441,
+                "duration": 183,
+                "start": 1788896624442,
+                "stop": 1788896624625,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_random_feed_split",
                 "status": "passed",
-                "duration": 1074,
-                "start": 1788734831441,
-                "stop": 1788734832515,
+                "duration": 862,
+                "start": 1788896624626,
+                "stop": 1788896625488,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_sample_legacy_reconcile",
                 "status": "passed",
-                "duration": 73,
-                "start": 1788734832515,
-                "stop": 1788734832588,
+                "duration": 127,
+                "start": 1788896625489,
+                "stop": 1788896625616,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_handcrafted_legacy_reconcile",
                 "status": "passed",
-                "duration": 73,
-                "start": 1788734832588,
-                "stop": 1788734832661,
+                "duration": 107,
+                "start": 1788896625616,
+                "stop": 1788896625723,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -513,9 +513,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_legacy_reconcile",
                 "status": "passed",
-                "duration": 97,
-                "start": 1788734832661,
-                "stop": 1788734832758,
+                "duration": 106,
+                "start": 1788896625723,
+                "stop": 1788896625829,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -525,9 +525,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_legacy_reconcile",
                 "status": "passed",
-                "duration": 95,
-                "start": 1788734832758,
-                "stop": 1788734832853,
+                "duration": 109,
+                "start": 1788896625829,
+                "stop": 1788896625938,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -537,9 +537,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_legacy_reconcile",
                 "status": "passed",
-                "duration": 67,
-                "start": 1788734832853,
-                "stop": 1788734832920,
+                "duration": 109,
+                "start": 1788896625938,
+                "stop": 1788896626047,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -549,9 +549,9 @@
             {
                 "name": "test_outputs.py::test_handcrafted_legacy_reconcile",
                 "status": "passed",
-                "duration": 94,
-                "start": 1788734832921,
-                "stop": 1788734833015,
+                "duration": 108,
+                "start": 1788896626047,
+                "stop": 1788896626155,
                 "retries": 0,
                 "file_path": "test_outputs.py",
                 "tags": [
@@ -561,54 +561,99 @@
             {
                 "name": "test_outputs.py::test_random_feed_legacy_reconcile",
                 "status": "passed",
-                "duration": 475,
-                "start": 1788734833015,
-                "stop": 1788734833490,
+                "duration": 492,
+                "start": 1788896626155,
+                "stop": 1788896626647,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_random_feed_legacy_split",
                 "status": "passed",
-                "duration": 1262,
-                "start": 1788734833490,
-                "stop": 1788734834752,
+                "duration": 1044,
+                "start": 1788896626647,
+                "stop": 1788896627691,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_big_feed_one_shot",
+                "status": "passed",
+                "duration": 175972,
+                "start": 1788896627691,
+                "stop": 1788896803663,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_big_feed_split",
+                "status": "passed",
+                "duration": 205823,
+                "start": 1788896803664,
+                "stop": 1788897009487,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_big_feed_legacy_reconcile",
+                "status": "passed",
+                "duration": 192248,
+                "start": 1788897009488,
+                "stop": 1788897201736,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_big_feed_killed_and_resumed",
+                "status": "passed",
+                "duration": 220136,
+                "start": 1788897201737,
+                "stop": 1788897421873,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_big_feed_split_killed_in_last_run",
+                "status": "passed",
+                "duration": 209965,
+                "start": 1788897421873,
+                "stop": 1788897631838,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_repeat_run_from_same_state_is_deterministic",
                 "status": "passed",
-                "duration": 712,
-                "start": 1788734834752,
-                "stop": 1788734835464,
+                "duration": 783,
+                "start": 1788897631839,
+                "stop": 1788897632622,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_hand_computed_month_end_clamping",
                 "status": "passed",
-                "duration": 41,
-                "start": 1788734835464,
-                "stop": 1788734835505,
+                "duration": 58,
+                "start": 1788897632622,
+                "stop": 1788897632680,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_hand_computed_late_scan_rewind",
                 "status": "passed",
-                "duration": 36,
-                "start": 1788734835506,
-                "stop": 1788734835542,
+                "duration": 56,
+                "start": 1788897632681,
+                "stop": 1788897632737,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_hand_computed_refund_debt",
                 "status": "passed",
-                "duration": 38,
-                "start": 1788734835542,
-                "stop": 1788734835580,
+                "duration": 58,
+                "start": 1788897632737,
+                "stop": 1788897632795,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             }

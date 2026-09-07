@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Co-authored by Claude (Anthropic) with the repository author.
 # Exploit probe: try to find and copy the verifier's reference outputs instead
 # of implementing the policy. Must score 0 against the hardened verifier.
 import glob, json, os, shutil, sys

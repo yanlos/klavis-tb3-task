@@ -1,0 +1,2015 @@
+============================= test session starts ==============================
+platform linux -- Python 3.[REDACTED][REDACTED].2, pytest-9.[REDACTED].[REDACTED], pluggy-[REDACTED].6.0 -- /opt/venv/bin/python
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collecting ... collected 35 items
+
+test_outputs.py::test_program_exists_and_is_executable FAILED            [  2%]
+test_outputs.py::test_sample_feed FAILED                                 [  5%]
+test_outputs.py::test_handcrafted[clamp_jan3[REDACTED]_monthly] FAILED            [  8%]
+test_outputs.py::test_handcrafted[close_then_late_event] FAILED          [ [REDACTED][REDACTED]%]
+test_outputs.py::test_handcrafted[debt_repaid_in_parts] FAILED           [ [REDACTED]4%]
+test_outputs.py::test_handcrafted[downgrade_cancelled] FAILED            [ [REDACTED]7%]
+test_outputs.py::test_handcrafted[downgrade_deferred] FAILED             [ 20%]
+test_outputs.py::test_handcrafted[duplicate_events] FAILED               [ 22%]
+test_outputs.py::test_handcrafted[events_before_signup] FAILED           [ 25%]
+test_outputs.py::test_handcrafted[expire_then_grant_same_instant] FAILED [ 28%]
+test_outputs.py::test_handcrafted[grace_lapse_restart] FAILED            [ 3[REDACTED]%]
+test_outputs.py::test_handcrafted[grace_renewal_within] FAILED           [ 34%]
+test_outputs.py::test_handcrafted[lapse_boundary_second] FAILED          [ 37%]
+test_outputs.py::test_handcrafted[late_revocation_rewind] FAILED         [ 40%]
+test_outputs.py::test_handcrafted[late_scan_rewind] FAILED               [ 42%]
+test_outputs.py::test_handcrafted[late_subscription_start] FAILED        [ 45%]
+test_outputs.py::test_handcrafted[leap_day_yearly] FAILED                [ 48%]
+test_outputs.py::test_handcrafted[refund_debt_repay] FAILED              [ 5[REDACTED]%]
+test_outputs.py::test_handcrafted[refund_unknown_and_twice] FAILED       [ 54%]
+test_outputs.py::test_handcrafted[revoke_yearly] FAILED                  [ 57%]
+test_outputs.py::test_handcrafted[same_second_events] FAILED             [ 60%]
+test_outputs.py::test_handcrafted[signup_twice_and_expiry] FAILED        [ 62%]
+test_outputs.py::test_handcrafted[spend_order_ties] FAILED               [ 65%]
+test_outputs.py::test_handcrafted[subscription_discards] FAILED          [ 68%]
+test_outputs.py::test_handcrafted[upgrade_forfeit] FAILED                [ 7[REDACTED]%]
+test_outputs.py::test_handcrafted[yearly_two_periods_downgrade] FAILED   [ 74%]
+test_outputs.py::test_random_feed_one_shot FAILED                        [ 77%]
+test_outputs.py::test_handcrafted_split[close_then_late_event] FAILED    [ 80%]
+test_outputs.py::test_handcrafted_split[duplicate_events] FAILED         [ 82%]
+test_outputs.py::test_handcrafted_split[late_revocation_rewind] FAILED   [ 85%]
+test_outputs.py::test_handcrafted_split[late_scan_rewind] FAILED         [ 88%]
+test_outputs.py::test_handcrafted_split[late_subscription_start] FAILED  [ 9[REDACTED]%]
+test_outputs.py::test_sample_split FAILED                                [ 94%]
+test_outputs.py::test_random_feed_split FAILED                           [ 97%]
+test_outputs.py::test_repeat_run_from_same_state_is_deterministic FAILED [[REDACTED]00%]
+
+=================================== FAILURES ===================================
+____________________ test_program_exists_and_is_executable _____________________
+
+    def test_program_exists_and_is_executable():
+>       assert os.path.isfile(AGENT), "%s is missing" % AGENT
+E       AssertionError: /app/ledger/rebuild is missing
+E       assert False
+E        +  where False = <function isfile at 0xff89fcd9fba0>('/app/ledger/rebuild')
+E        +    where <function isfile at 0xff89fcd9fba0> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+test_outputs.py:236: AssertionError
+_______________________________ test_sample_feed _______________________________
+
+    def test_sample_feed():
+>       one_shot(SAMPLE)
+
+test_outputs.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/sample-0fc2ea2f/feed.jsonl', state_in = None
+as_of = '2026-09-0[REDACTED]T00:00:00Z', workdir = '/work/sample-0fc2ea2f', tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+____________________ test_handcrafted[clamp_jan3[REDACTED]_monthly] _____________________
+
+name = 'clamp_jan3[REDACTED]_monthly'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/clamp_jan3[REDACTED]_monthly-b52cac4a/feed.jsonl', state_in = None
+as_of = '2026-06-0[REDACTED]T00:00:00Z', workdir = '/work/clamp_jan3[REDACTED]_monthly-b52cac4a'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+___________________ test_handcrafted[close_then_late_event] ____________________
+
+name = 'close_then_late_event'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/close_then_late_event-6b44[REDACTED]026/feed.jsonl', state_in = None
+as_of = '2026-08-0[REDACTED]T00:00:00Z', workdir = '/work/close_then_late_event-6b44[REDACTED]026'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+____________________ test_handcrafted[debt_repaid_in_parts] ____________________
+
+name = 'debt_repaid_in_parts'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/debt_repaid_in_parts-0[REDACTED][REDACTED]dde3d/feed.jsonl', state_in = None
+as_of = '2026-07-0[REDACTED]T00:00:00Z', workdir = '/work/debt_repaid_in_parts-0[REDACTED][REDACTED]dde3d'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+____________________ test_handcrafted[downgrade_cancelled] _____________________
+
+name = 'downgrade_cancelled'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/downgrade_cancelled-3a04269[REDACTED]/feed.jsonl', state_in = None
+as_of = '2026-08-0[REDACTED]T00:00:00Z', workdir = '/work/downgrade_cancelled-3a04269[REDACTED]'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+_____________________ test_handcrafted[downgrade_deferred] _____________________
+
+name = 'downgrade_deferred'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/downgrade_deferred-54ea47e[REDACTED]/feed.jsonl', state_in = None
+as_of = '2026-07-20T00:00:00Z', workdir = '/work/downgrade_deferred-54ea47e[REDACTED]'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+______________________ test_handcrafted[duplicate_events] ______________________
+
+name = 'duplicate_events'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/duplicate_events-ddd85a09/feed.jsonl', state_in = None
+as_of = '2026-05-0[REDACTED]T00:00:00Z', workdir = '/work/duplicate_events-ddd85a09'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+____________________ test_handcrafted[events_before_signup] ____________________
+
+name = 'events_before_signup'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/events_before_signup-a6eb3e28/feed.jsonl', state_in = None
+as_of = '2026-05-0[REDACTED]T00:00:00Z', workdir = '/work/events_before_signup-a6eb3e28'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+_______________ test_handcrafted[expire_then_grant_same_instant] _______________
+
+name = 'expire_then_grant_same_instant'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/expire_then_grant_same_instant-7745bbd9/feed.jsonl'
+state_in = None, as_of = '2026-04-0[REDACTED]T00:00:00Z'
+workdir = '/work/expire_then_grant_same_instant-7745bbd9', tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+____________________ test_handcrafted[grace_lapse_restart] _____________________
+
+name = 'grace_lapse_restart'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/grace_lapse_restart-83[REDACTED]bce49/feed.jsonl', state_in = None
+as_of = '2026-06-0[REDACTED]T00:00:00Z', workdir = '/work/grace_lapse_restart-83[REDACTED]bce49'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+____________________ test_handcrafted[grace_renewal_within] ____________________
+
+name = 'grace_renewal_within'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/grace_renewal_within-7[REDACTED]29c9ab/feed.jsonl', state_in = None
+as_of = '2026-05-0[REDACTED]T00:00:00Z', workdir = '/work/grace_renewal_within-7[REDACTED]29c9ab'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+___________________ test_handcrafted[lapse_boundary_second] ____________________
+
+name = 'lapse_boundary_second'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/lapse_boundary_second-b4b59093/feed.jsonl', state_in = None
+as_of = '2026-06-0[REDACTED]T00:00:00Z', workdir = '/work/lapse_boundary_second-b4b59093'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+___________________ test_handcrafted[late_revocation_rewind] ___________________
+
+name = 'late_revocation_rewind'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/late_revocation_rewind-[REDACTED]b9468[REDACTED]5/feed.jsonl'
+state_in = None, as_of = '2026-06-0[REDACTED]T00:00:00Z'
+workdir = '/work/late_revocation_rewind-[REDACTED]b9468[REDACTED]5', tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+______________________ test_handcrafted[late_scan_rewind] ______________________
+
+name = 'late_scan_rewind'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/late_scan_rewind-d5d23038/feed.jsonl', state_in = None
+as_of = '2026-04-0[REDACTED]T00:00:00Z', workdir = '/work/late_scan_rewind-d5d23038'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+__________________ test_handcrafted[late_subscription_start] ___________________
+
+name = 'late_subscription_start'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/late_subscription_start-d489c4ec/feed.jsonl'
+state_in = None, as_of = '2026-06-0[REDACTED]T00:00:00Z'
+workdir = '/work/late_subscription_start-d489c4ec', tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+______________________ test_handcrafted[leap_day_yearly] _______________________
+
+name = 'leap_day_yearly'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/leap_day_yearly-4[REDACTED]2b5084/feed.jsonl', state_in = None
+as_of = '2029-04-[REDACTED]5T00:00:00Z', workdir = '/work/leap_day_yearly-4[REDACTED]2b5084'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+_____________________ test_handcrafted[refund_debt_repay] ______________________
+
+name = 'refund_debt_repay'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/refund_debt_repay-57246453/feed.jsonl', state_in = None
+as_of = '2026-03-0[REDACTED]T00:00:00Z', workdir = '/work/refund_debt_repay-57246453'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+__________________ test_handcrafted[refund_unknown_and_twice] __________________
+
+name = 'refund_unknown_and_twice'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/refund_unknown_and_twice-5a[REDACTED]d6bfe/feed.jsonl'
+state_in = None, as_of = '2026-04-0[REDACTED]T00:00:00Z'
+workdir = '/work/refund_unknown_and_twice-5a[REDACTED]d6bfe', tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+_______________________ test_handcrafted[revoke_yearly] ________________________
+
+name = 'revoke_yearly'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/revoke_yearly-d57f5e02/feed.jsonl', state_in = None
+as_of = '2026-09-0[REDACTED]T00:00:00Z', workdir = '/work/revoke_yearly-d57f5e02'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+_____________________ test_handcrafted[same_second_events] _____________________
+
+name = 'same_second_events'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/same_second_events-4b583b00/feed.jsonl', state_in = None
+as_of = '2026-03-0[REDACTED]T00:00:00Z', workdir = '/work/same_second_events-4b583b00'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+__________________ test_handcrafted[signup_twice_and_expiry] ___________________
+
+name = 'signup_twice_and_expiry'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/signup_twice_and_expiry-eff0d933/feed.jsonl'
+state_in = None, as_of = '2026-05-0[REDACTED]T00:00:00Z'
+workdir = '/work/signup_twice_and_expiry-eff0d933', tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+______________________ test_handcrafted[spend_order_ties] ______________________
+
+name = 'spend_order_ties'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/spend_order_ties-6845547d/feed.jsonl', state_in = None
+as_of = '2026-06-0[REDACTED]T00:00:00Z', workdir = '/work/spend_order_ties-6845547d'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+___________________ test_handcrafted[subscription_discards] ____________________
+
+name = 'subscription_discards'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/subscription_discards-abd703de/feed.jsonl', state_in = None
+as_of = '2026-05-0[REDACTED]T00:00:00Z', workdir = '/work/subscription_discards-abd703de'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+______________________ test_handcrafted[upgrade_forfeit] _______________________
+
+name = 'upgrade_forfeit'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/upgrade_forfeit-3[REDACTED]68afde/feed.jsonl', state_in = None
+as_of = '2026-07-0[REDACTED]T00:00:00Z', workdir = '/work/upgrade_forfeit-3[REDACTED]68afde'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+________________ test_handcrafted[yearly_two_periods_downgrade] ________________
+
+name = 'yearly_two_periods_downgrade'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/yearly_two_periods_downgrade-442d0[REDACTED]6f/feed.jsonl'
+state_in = None, as_of = '2026-[REDACTED][REDACTED]-0[REDACTED]T00:00:00Z'
+workdir = '/work/yearly_two_periods_downgrade-442d0[REDACTED]6f', tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+__________________________ test_random_feed_one_shot ___________________________
+
+    def test_random_feed_one_shot():
+>       one_shot(RANDOM)
+
+test_outputs.py:25[REDACTED]: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:[REDACTED]96: in one_shot
+    got = run_agent(feed, None, sc["as_of"], workdir, "one")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/random_20260906-447fb053/feed.jsonl', state_in = None
+as_of = '2026-08-05T00:00:00Z', workdir = '/work/random_20260906-447fb053'
+tag = 'one'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+________________ test_handcrafted_split[close_then_late_event] _________________
+
+name = 'close_then_late_event'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:2[REDACTED]9: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], workdir, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/close_then_late_event-split-84efdd76/chunk0.jsonl'
+state_in = None, as_of = '2026-05-0[REDACTED]T00:00:00Z'
+workdir = '/work/close_then_late_event-split-84efdd76', tag = 'chunk0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+___________________ test_handcrafted_split[duplicate_events] ___________________
+
+name = 'duplicate_events'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:2[REDACTED]9: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], workdir, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/duplicate_events-split-89d2[REDACTED]3ef/chunk0.jsonl'
+state_in = None, as_of = None, workdir = '/work/duplicate_events-split-89d2[REDACTED]3ef'
+tag = 'chunk0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+________________ test_handcrafted_split[late_revocation_rewind] ________________
+
+name = 'late_revocation_rewind'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:2[REDACTED]9: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], workdir, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/late_revocation_rewind-split-70977f9e/chunk0.jsonl'
+state_in = None, as_of = None
+workdir = '/work/late_revocation_rewind-split-70977f9e', tag = 'chunk0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+___________________ test_handcrafted_split[late_scan_rewind] ___________________
+
+name = 'late_scan_rewind'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:2[REDACTED]9: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], workdir, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/late_scan_rewind-split-[REDACTED]99d6b4f/chunk0.jsonl'
+state_in = None, as_of = None, workdir = '/work/late_scan_rewind-split-[REDACTED]99d6b4f'
+tag = 'chunk0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+_______________ test_handcrafted_split[late_subscription_start] ________________
+
+name = 'late_subscription_start'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:2[REDACTED]9: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], workdir, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/late_subscription_start-split-f[REDACTED]40f09a/chunk0.jsonl'
+state_in = None, as_of = None
+workdir = '/work/late_subscription_start-split-f[REDACTED]40f09a', tag = 'chunk0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+______________________________ test_sample_split _______________________________
+
+    def test_sample_split():
+>       split_runs(SAMPLE)
+
+test_outputs.py:260: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:2[REDACTED]9: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], workdir, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/sample-split-777dd486/chunk0.jsonl', state_in = None
+as_of = None, workdir = '/work/sample-split-777dd486', tag = 'chunk0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+____________________________ test_random_feed_split ____________________________
+
+    def test_random_feed_split():
+>       split_runs(RANDOM)
+
+test_outputs.py:264: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:2[REDACTED]9: in split_runs
+    agent_last = run_agent(feed, agent_state, chunk_as_of[i], workdir, "chunk%d" % i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/random_20260906-split-4e8c[REDACTED]954/chunk0.jsonl'
+state_in = None, as_of = None, workdir = '/work/random_20260906-split-4e8c[REDACTED]954'
+tag = 'chunk0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+_______________ test_repeat_run_from_same_state_is_deterministic _______________
+
+    def test_repeat_run_from_same_state_is_deterministic():
+        sc = RANDOM
+        cut = sc["splits"][[REDACTED]]
+        workdir = _fresh_dir("determinism")
+        feed0 = os.path.join(workdir, "c0.jsonl")
+        feed[REDACTED] = os.path.join(workdir, "c[REDACTED].jsonl")
+        write_feed(sc["lines"][:cut], feed0)
+        write_feed(sc["lines"][cut:], feed[REDACTED])
+>       first = run_agent(feed0, None, None, workdir, "c0")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_outputs.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events_path = '/work/determinism-6b95[REDACTED]5d0/c0.jsonl', state_in = None
+as_of = None, workdir = '/work/determinism-6b95[REDACTED]5d0', tag = 'c0'
+
+    def run_agent(events_path, state_in, as_of, workdir, tag):
+        """Run the agent program as the runner user inside its own directory."""
+        d = os.path.join(workdir, tag)
+        os.makedirs(d)
+        shutil.chown(d, RUNNER, RUNNER)
+        os.chmod(d, 0o700)
+        events = os.path.join(d, "events.jsonl")
+        shutil.copyfile(events_path, events)
+        _give(events)
+        state_out = os.path.join(d, "state.json")
+        ledger = os.path.join(d, "ledger.jsonl")
+        report = os.path.join(d, "report.json")
+        cmd = ["runuser", "-u", RUNNER, "--", "env", "-i",
+               "HOME=" + d, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+               "LANG=C.UTF-8", "TMPDIR=" + d,
+               AGENT, "--events", events, "--state-out", state_out,
+               "--ledger-out", ledger, "--report-out", report]
+        if state_in:
+            state_copy = os.path.join(d, "state_in.json")
+            shutil.copyfile(state_in, state_copy)
+            _give(state_copy)
+            cmd += ["--state-in", state_copy]
+        if as_of:
+            cmd += ["--as-of", as_of]
+        try:
+            proc = subprocess.run(cmd, cwd=d, capture_output=True, text=True, timeout=RUN_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            pytest.fail("%s did not finish within %d seconds" % (AGENT, RUN_TIMEOUT))
+        if proc.returncode != 0:
+>           pytest.fail("%s exited with %d\nstdout tail:\n%s\nstderr tail:\n%s" % (
+                AGENT, proc.returncode, proc.stdout[-2000:], proc.stderr[-2000:]))
+E           Failed: /app/ledger/rebuild exited with [REDACTED]27
+E           stdout tail:
+E           
+E           stderr tail:
+E           env: ‘/app/ledger/rebuild’: No such file or directory
+
+test_outputs.py:[REDACTED]44: Failed
+=========================== short test summary info ============================
+FAILED test_outputs.py::test_program_exists_and_is_executable - AssertionErro...
+FAILED test_outputs.py::test_sample_feed - Failed: /app/ledger/rebuild exited...
+FAILED test_outputs.py::test_handcrafted[clamp_jan3[REDACTED]_monthly] - Failed: /app/...
+FAILED test_outputs.py::test_handcrafted[close_then_late_event] - Failed: /ap...
+FAILED test_outputs.py::test_handcrafted[debt_repaid_in_parts] - Failed: /app...
+FAILED test_outputs.py::test_handcrafted[downgrade_cancelled] - Failed: /app/...
+FAILED test_outputs.py::test_handcrafted[downgrade_deferred] - Failed: /app/l...
+FAILED test_outputs.py::test_handcrafted[duplicate_events] - Failed: /app/led...
+FAILED test_outputs.py::test_handcrafted[events_before_signup] - Failed: /app...
+FAILED test_outputs.py::test_handcrafted[expire_then_grant_same_instant] - Fa...
+FAILED test_outputs.py::test_handcrafted[grace_lapse_restart] - Failed: /app/...
+FAILED test_outputs.py::test_handcrafted[grace_renewal_within] - Failed: /app...
+FAILED test_outputs.py::test_handcrafted[lapse_boundary_second] - Failed: /ap...
+FAILED test_outputs.py::test_handcrafted[late_revocation_rewind] - Failed: /a...
+FAILED test_outputs.py::test_handcrafted[late_scan_rewind] - Failed: /app/led...
+FAILED test_outputs.py::test_handcrafted[late_subscription_start] - Failed: /...
+FAILED test_outputs.py::test_handcrafted[leap_day_yearly] - Failed: /app/ledg...
+FAILED test_outputs.py::test_handcrafted[refund_debt_repay] - Failed: /app/le...
+FAILED test_outputs.py::test_handcrafted[refund_unknown_and_twice] - Failed: ...
+FAILED test_outputs.py::test_handcrafted[revoke_yearly] - Failed: /app/ledger...
+FAILED test_outputs.py::test_handcrafted[same_second_events] - Failed: /app/l...
+FAILED test_outputs.py::test_handcrafted[signup_twice_and_expiry] - Failed: /...
+FAILED test_outputs.py::test_handcrafted[spend_order_ties] - Failed: /app/led...
+FAILED test_outputs.py::test_handcrafted[subscription_discards] - Failed: /ap...
+FAILED test_outputs.py::test_handcrafted[upgrade_forfeit] - Failed: /app/ledg...
+FAILED test_outputs.py::test_handcrafted[yearly_two_periods_downgrade] - Fail...
+FAILED test_outputs.py::test_random_feed_one_shot - Failed: /app/ledger/rebui...
+FAILED test_outputs.py::test_handcrafted_split[close_then_late_event] - Faile...
+FAILED test_outputs.py::test_handcrafted_split[duplicate_events] - Failed: /a...
+FAILED test_outputs.py::test_handcrafted_split[late_revocation_rewind] - Fail...
+FAILED test_outputs.py::test_handcrafted_split[late_scan_rewind] - Failed: /a...
+FAILED test_outputs.py::test_handcrafted_split[late_subscription_start] - Fai...
+FAILED test_outputs.py::test_sample_split - Failed: /app/ledger/rebuild exite...
+FAILED test_outputs.py::test_random_feed_split - Failed: /app/ledger/rebuild ...
+FAILED test_outputs.py::test_repeat_run_from_same_state_is_deterministic - Fa...
+============================== 35 failed in [REDACTED].46s ==============================

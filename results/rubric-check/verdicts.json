@@ -1,0 +1,144 @@
+{
+  "checks": {
+    "verifiable": {
+      "outcome": "pass",
+      "explanation": "test.sh does only chmod/mkdir/rm then runs a pinned pytest suite with no runtime network installs; all comparisons are exact/programmatic (line-by-line JSON diffs, memory/time sampling) with no LLM-as-judge, so verification is deterministic and reliable."
+    },
+    "solvable": {
+      "outcome": "pass",
+      "explanation": "A working 886-line stdlib-only reference (solution/ledger_ref.py) is provided; I ran it directly against the shipped sample fixtures (one-shot, split, legacy-reconcile) and three independently hand-derived scenarios and every output matched exactly, confirming the solution passes verification and is implementable by a domain expert in the stated ~4 hours."
+    },
+    "difficult": {
+      "outcome": "pass",
+      "explanation": "The task requires internalizing a ~500-line multi-document billing policy (month-end clamping, timer ordering, grace/lapse, deferred downgrades, prorated upgrades, reversal-based corrections) and building a crash-resilient, memory-bounded (512MB/600s) replay engine that resumes correctly after arbitrary SIGKILLs — well beyond an average undergraduate's reach in a few days."
+    },
+    "interesting": {
+      "outcome": "pass",
+      "explanation": "This models a real production billing-reconciliation problem (in-app purchase credit ledgers, refunds, subscription proration) that the author states they actually had to solve for their own app; mobile billing engineers would genuinely value a correct solution."
+    },
+    "outcome_verified": {
+      "outcome": "pass",
+      "explanation": "Tests only check final ledger/report outputs, exit code, timing, and memory usage; the instruction imposes no required implementation technique (state file format is explicitly 'yours, any format') and does not mandate any particular tool or step-by-step procedure."
+    },
+    "anti_cheat_robustness": {
+      "outcome": "pass",
+      "explanation": "Hidden scenarios and the reference implementation live only in the verifier image under /tests (chmod 700, built after the agent container is torn down in separate-verifier mode); the agent's own directory tree has root-owned 711 parents so it cannot browse verifier state, and duplicated assets (products.json, legacy script, reference) are byte-identical across images with no leakage into the agent image."
+    },
+    "task_security": {
+      "outcome": "pass",
+      "explanation": "All Dockerfiles and scripts perform only legitimate setup/verification actions (chmod/mkdir/pytest/subprocess); no credential exfiltration, obfuscated payloads, network calls to untrusted endpoints, or prompt injection were found."
+    },
+    "functional_verification": {
+      "outcome": "pass",
+      "explanation": "Verification executes the agent's compiled program as an unprivileged user and compares its actual JSON output (ledger lines, report) field by field against a reference run; there is no source-code keyword or string-pattern scanning."
+    },
+    "deterministic_reproducible": {
+      "outcome": "pass",
+      "explanation": "Base images and Python test dependencies are version-pinned identically across environment/Dockerfile and tests/Dockerfile, apt packages are correctly left unpinned, and all random scenarios use fixed seeds, so no live/mutable services are involved and outputs are reproducible."
+    },
+    "essential_difficulty": {
+      "outcome": "pass",
+      "explanation": "Difficulty stems from correctly implementing the effective-order replay, timer-priority resolution, and reversal-diffing logic under resource/crash constraints; the comparison canonicalizes millisecond-suffixed timestamps and ignores extra keys/key order, so failures come from logic errors, not formatting minutiae."
+    },
+    "test_instruction_alignment": {
+      "outcome": "pass",
+      "explanation": "Every behavior tested (CLI flags, ledger/report schema, resumability, memory/time budgets, legacy reconciliation) traces to instruction.md and the referenced POLICY.md/amendments, and the 29 handcrafted scenarios plus hand-computed cases map directly onto policy rules named in those documents; the suite is long, but that reflects the size of the referenced policy spec rather than untested/over-specified extras."
+    },
+    "novel": {
+      "outcome": "pass",
+      "explanation": "This is a bespoke domain simulation (a specific app's billing policy with custom amendments and incident history) rather than a textbook algorithm, so it cannot be solved by recalling a known solution from training data."
+    },
+    "agentic": {
+      "outcome": "pass",
+      "explanation": "Building and iteratively validating an 800+ line program against sample fixtures, a resumable checkpoint design, and strict resource budgets clearly requires multi-step exploration, testing, and debugging rather than a single zero-shot generation."
+    },
+    "reviewable": {
+      "outcome": "pass",
+      "explanation": "The task ships extensive documentation (policy, amendments, incident note) plus three test cases with expected values hand-derived independently of the reference implementation (which I verified match the reference exactly), giving non-specialist reviewers an independent way to sanity-check correctness."
+    },
+    "instruction_concision": {
+      "outcome": "pass",
+      "explanation": "instruction.md is written in an authentic, non-formulaic human voice, uses absolute paths and backticks throughout, describes only the end-state/interface (not an implementation approach), and only mentions the Node/Python runtime availability because that is a structurally necessary, otherwise-undiscoverable constraint."
+    },
+    "solution_quality": {
+      "outcome": "pass",
+      "explanation": "solution/solve.sh copies in a genuine, executable computation (solution/ledger_ref.py, a full stdlib-only replay engine) rather than echoing a hardcoded answer, and the large implementation file is kept separate from solve.sh rather than inlined as a heredoc."
+    },
+    "separate_verifier_configured": {
+      "outcome": "pass",
+      "explanation": "All verifier inputs (reference, legacy job, scenarios, products.json) are baked into tests/Dockerfile via COPY . /tests/, pytest/pytest-json-ctrf are pre-installed with pinned versions rather than installed in test.sh, and shared assets (products.json, legacy_ledger.js, ledger_ref.py) are byte-identical between the agent and verifier images."
+    },
+    "environment_hygiene": {
+      "outcome": "pass",
+      "explanation": "environment/Dockerfile copies only data/docs/legacy (no tests/ or solution/) and installs only general-purpose dev tools, not test-only dependencies; tests/Dockerfile owns /tests and its pinned pytest/ctrf tooling; both Dockerfiles run apt-get update before installs and clean up apt lists afterward with unpinned apt packages."
+    },
+    "structured_data_schema": {
+      "outcome": "pass",
+      "explanation": "POLICY.md sections 6.1 and 7.1 give explicit, normatively-marked ('the keys in this example are required... the only keys the verifier reads') schemas for the ledger line format and the report format."
+    },
+    "typos": {
+      "outcome": "pass",
+      "explanation": "No typos were found in filenames, paths, CLI flags, or identifiers across instruction.md, the policy docs, task.toml, and the test/solution scripts."
+    },
+    "difficulty_explanation_quality": {
+      "outcome": "pass",
+      "explanation": "The difficulty_explanation names concrete sources of difficulty (rule interactions, exact-match verification, resumability under SIGKILL, scale/memory budget) understandable to a non-specialist, and does not reference pass rates or model performance."
+    },
+    "solution_explanation_quality": {
+      "outcome": "pass",
+      "explanation": "The explanation ('replays a user's timeline in effective order..., diffs it against what was emitted, and emits reversals for the changed tail') accurately summarizes the actual algorithm in ledger_ref.py, which I confirmed behaves exactly this way against the hand-computed reversal test case."
+    },
+    "verification_explanation_quality": {
+      "outcome": "pass",
+      "explanation": "The explanation describes concretely what is compared and how (field-by-field posting/report diff, split/legacy/kill test structure), and justifies the memory/time thresholds by citing the reference's actual measured usage (290MB/~1min against 512MB/600s limits) as calibration evidence."
+    },
+    "category_and_tags": {
+      "outcome": "pass",
+      "explanation": "category='Software'/subcategory='Data engineering' fits an event-sourced ledger rebuild, and tags (billing, event-sourcing, ledger, subscriptions, in-app-purchase, checkpointing) are specific and descriptive rather than generic."
+    },
+    "task_name": {
+      "outcome": "pass",
+      "explanation": "'iap-ledger-rebuild' is a concise, three-word, kebab-case slug that clearly conveys the task's core subject matter."
+    },
+    "resource_configuration": {
+      "outcome": "pass",
+      "explanation": "Timeouts and resources were clearly customized for this task's needs (agent 8h, verifier 1h, verifier container given extra CPU/memory to run the large reference scenario) rather than left at defaults, and the tight 512MB/600s budget imposed on the agent's own program is a genuine real-world constraint driving algorithmic difficulty, not an artificial computational scale-up."
+    },
+    "task_readme": {
+      "outcome": "pass",
+      "explanation": "README.md adds substantial reviewer-useful context beyond the terse task.toml metadata fields, including concrete calibration evidence (reference memory/time margins, a prior solution attempt that OOM'd at 4.4GB) and anti-cheat testing notes."
+    },
+    "expert_time_estimate": {
+      "outcome": "pass",
+      "explanation": "4 hours is provided (non-default) and is plausible for an expert who already runs this exact billing system in production and knows the policy intimately, consistent with the stated difficulty."
+    },
+    "task_toml_schema": {
+      "outcome": "pass",
+      "explanation": "task.toml uses only recognized sections and fields (task, metadata, verifier/verifier.environment, agent, environment, artifacts) with no invented keys."
+    },
+    "no_extraneous_files": {
+      "outcome": "pass",
+      "explanation": "Every file present is referenced by a Dockerfile, the instruction, solve.sh, or the tests (including the sample fixtures used as a format reference); no editor cruft, backups, or unused files were found."
+    },
+    "artifact_efficiency": {
+      "outcome": "pass",
+      "explanation": "The declared artifact (/app/ledger/) is exactly the agent's own deliverable program and any self-contained dependencies it needs, which is the answer itself rather than build-time-fixed reference data; there are no [[verifier.collect]] hooks to evaluate for fail-safety."
+    },
+    "verifier_execution_isolation": {
+      "outcome": "pass",
+      "explanation": "The agent's program is always executed via runuser as the unprivileged 'runner' user with output captured to files (never pipes) and its process group killed after each run; /logs/verifier is chmod 700 before any agent code runs, and root's test.sh derives the reward solely from pytest's exit code, with pytest never importing agent code in-process."
+    },
+    "ctrf_reporting": {
+      "outcome": "pass",
+      "explanation": "test.sh runs pytest with --ctrf /logs/verifier/ctrf.json using the pinned pytest==9.1.1/pytest-json-ctrf==0.5.2 pair baked into tests/Dockerfile, matching the recommended pattern."
+    },
+    "do_not_modify_enforced": {
+      "outcome": "pass",
+      "explanation": "The policy's core append-only requirement ('never edit a written posting, express corrections as reversals') is enforced functionally: split-run tests concatenate and compare the full cumulative ledger after every chunk, so any rewriting of already-emitted lines would be caught by the exact-match comparison."
+    },
+    "binary_reward": {
+      "outcome": "pass",
+      "explanation": "test.sh writes exactly 1 or 0 to reward.txt based solely on pytest's exit code, with no other reward-writing path and no partial-credit computation."
+    }
+  }
+}

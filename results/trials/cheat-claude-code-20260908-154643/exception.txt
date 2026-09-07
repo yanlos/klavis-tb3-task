@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/Users/yanlos/.local/share/uv/tools/harbor/lib/python3.[REDACTED]3/site-packages/harbor/trial/trial.py", line 406, in run
+    await self._prepare()
+  File "/Users/yanlos/.local/share/uv/tools/harbor/lib/python3.[REDACTED]3/site-packages/harbor/trial/trial.py", line 450, in _prepare
+    await self._setup_agent()
+  File "/Users/yanlos/.local/share/uv/tools/harbor/lib/python3.[REDACTED]3/site-packages/harbor/trial/trial.py", line [REDACTED]455, in _setup_agent
+    await asyncio.wait_for(
+    ...<2 lines>...
+    )
+  File "/Users/yanlos/.local/share/uv/python/cpython-3.[REDACTED]3.[REDACTED]5-macos-aarch64-none/lib/python3.[REDACTED]3/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/yanlos/.local/share/uv/tools/harbor/lib/python3.[REDACTED]3/site-packages/harbor/agents/installed/base.py", line 953, in setup
+    await self.install(environment)
+  File "/Users/yanlos/.local/share/uv/tools/harbor/lib/python3.[REDACTED]3/site-packages/harbor/agents/installed/claude_code.py", line 449, in install
+    await self.exec_as_agent(
+    ...<[REDACTED]2 lines>...
+    )
+  File "/Users/yanlos/.local/share/uv/tools/harbor/lib/python3.[REDACTED]3/site-packages/harbor/agents/installed/base.py", line 898, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+        environment, command, env=env, cwd=cwd, timeout_sec=timeout_sec
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/yanlos/.local/share/uv/tools/harbor/lib/python3.[REDACTED]3/site-packages/harbor/agents/installed/base.py", line 865, in _exec
+    raise self._classify_exec_error(command, result)
+harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit [REDACTED]27): set -euo pipefail; if command -v apk &> /dev/null; then  npm install -g @anthropic-ai/claude-code; else  curl -fsSL https://downloads.claude.ai/claude-code-releases/bootstrap.sh | bash -s --; fi && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && export PATH="$HOME/.local/bin:$PATH" && claude --version
+stdout: Setting up Claude Code...
+
+Checking installation status...
+Installing Claude Code native build latest...
+Setting up launcher and shell integration...
+⚠ Setup notes:
+  ● claude command at /root/.local/bin/claude missing or broken (/root/.local/bin doe ... [72 chars truncated] ... oken
+  ● Native installation exists but ~/.local/bin is not in your PATH. Run:
+
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> your shell config file && source your shell config file
+
+✔ Claude Code successfully installed!
+
+  Version: 2.[REDACTED].265
+
+  Location: ~/.local/bin/claude
+
+
+  Next: Run claude --help to get started
+
+⚠ Setup notes:
+  ● claude command at /root/.local/bin/claude missing or broken (/root/.local/bin does not exist)
+  ● claude command at /root/.local/bin/claude missing or broken
+  ● Native installation exists but ~/.local/bin is not in your PATH. Run:
+
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> your shell config file && source your shell config file
+
+
+✅ Installation complete!
+
+bash: line [REDACTED]: claude: command not found
+
+stderr: None

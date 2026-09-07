@@ -1,4 +1,5 @@
 #!/bin/bash
+# Co-authored by Claude (Anthropic) with the repository author.
 # Trial analysis with the TB3 rubric. Needs ANTHROPIC_API_KEY.
 # Usage: scripts/run_analyze.sh jobs/<job-dir>
 set -u

@@ -1,4 +1,5 @@
 #!/bin/bash
+# Co-authored by Claude (Anthropic) with the repository author.
 # Run the verifier image directly against a candidate /app/ledger directory.
 # This is the fast local loop that Harbor's oracle run also exercises.
 #   scripts/run_probe.sh tasks/iap-ledger-rebuild/solution   # reference, expect reward 1

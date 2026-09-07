@@ -1,4 +1,5 @@
 #!/bin/bash
+# Co-authored by Claude (Anthropic) with the repository author.
 # Run every TB3 static check against the task. Needs a clone of
 # terminal-bench-3 at $TB3 and python3 >= 3.11 on PATH (for tomllib).
 set -u

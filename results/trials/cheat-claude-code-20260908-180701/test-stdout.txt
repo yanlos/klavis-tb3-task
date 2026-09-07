@@ -1,0 +1,1902 @@
+============================= test session starts ==============================
+platform linux -- Python 3.[REDACTED][REDACTED].2, pytest-9.[REDACTED].[REDACTED], pluggy-[REDACTED].6.0 -- /opt/venv/bin/python
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collecting ... collected 57 items
+
+test_outputs.py::test_program_exists_and_is_executable PASSED            [  [REDACTED]%]
+test_outputs.py::test_sample_feed FAILED                                 [  3%]
+test_outputs.py::test_handcrafted[amend_grace_window] FAILED             [  5%]
+test_outputs.py::test_handcrafted[amend_signup_rules] FAILED             [  7%]
+test_outputs.py::test_handcrafted[amend_upgrade_proration] FAILED        [  8%]
+test_outputs.py::test_handcrafted[clamp_jan3[REDACTED]_monthly] FAILED            [ [REDACTED]0%]
+test_outputs.py::test_handcrafted[close_then_late_event] FAILED          [ [REDACTED]2%]
+test_outputs.py::test_handcrafted[debt_repaid_in_parts] FAILED           [ [REDACTED]4%]
+test_outputs.py::test_handcrafted[downgrade_cancelled] FAILED            [ [REDACTED]5%]
+test_outputs.py::test_handcrafted[downgrade_deferred] FAILED             [ [REDACTED]7%]
+test_outputs.py::test_handcrafted[downgrade_early_renewal] FAILED        [ [REDACTED]9%]
+test_outputs.py::test_handcrafted[duplicate_events] FAILED               [ 2[REDACTED]%]
+test_outputs.py::test_handcrafted[events_before_signup] FAILED           [ 22%]
+test_outputs.py::test_handcrafted[expire_then_grant_same_instant] FAILED [ 24%]
+test_outputs.py::test_handcrafted[grace_lapse_restart] FAILED            [ 26%]
+test_outputs.py::test_handcrafted[grace_renewal_within] FAILED           [ 28%]
+test_outputs.py::test_handcrafted[junk_user_and_revoked_pending] FAILED  [ 29%]
+test_outputs.py::test_handcrafted[lapse_boundary_second] FAILED          [ 3[REDACTED]%]
+test_outputs.py::test_handcrafted[late_revocation_rewind] FAILED         [ 33%]
+test_outputs.py::test_handcrafted[late_scan_rewind] FAILED               [ 35%]
+test_outputs.py::test_handcrafted[late_subscription_start] FAILED        [ 36%]
+test_outputs.py::test_handcrafted[leap_day_yearly] FAILED                [ 38%]
+test_outputs.py::test_handcrafted[refund_debt_repay] FAILED              [ 40%]
+test_outputs.py::test_handcrafted[refund_unknown_and_twice] FAILED       [ 42%]
+test_outputs.py::test_handcrafted[revoke_yearly] FAILED                  [ 43%]
+test_outputs.py::test_handcrafted[same_second_events] FAILED             [ 45%]
+test_outputs.py::test_handcrafted[signup_twice_and_expiry] FAILED        [ 47%]
+test_outputs.py::test_handcrafted[spend_order_ties] FAILED               [ 49%]
+test_outputs.py::test_handcrafted[subscription_discards] FAILED          [ 50%]
+test_outputs.py::test_handcrafted[upgrade_forfeit] FAILED                [ 52%]
+test_outputs.py::test_handcrafted[yearly_two_periods_downgrade] FAILED   [ 54%]
+test_outputs.py::test_random_feed_one_shot FAILED                        [ 56%]
+test_outputs.py::test_handcrafted_split[amend_upgrade_proration] FAILED  [ 57%]
+test_outputs.py::test_handcrafted_split[close_then_late_event] FAILED    [ 59%]
+test_outputs.py::test_handcrafted_split[duplicate_events] FAILED         [ 6[REDACTED]%]
+test_outputs.py::test_handcrafted_split[late_revocation_rewind] FAILED   [ 63%]
+test_outputs.py::test_handcrafted_split[late_scan_rewind] FAILED         [ 64%]
+test_outputs.py::test_handcrafted_split[late_subscription_start] FAILED  [ 66%]
+test_outputs.py::test_sample_split FAILED                                [ 68%]
+test_outputs.py::test_random_feed_split FAILED                           [ 70%]
+test_outputs.py::test_sample_legacy_reconcile FAILED                     [ 7[REDACTED]%]
+test_outputs.py::test_handcrafted_legacy_reconcile[yearly_two_periods_downgrade] FAILED [ 73%]
+test_outputs.py::test_handcrafted_legacy_reconcile[grace_lapse_restart] FAILED [ 75%]
+test_outputs.py::test_handcrafted_legacy_reconcile[duplicate_events] FAILED [ 77%]
+test_outputs.py::test_handcrafted_legacy_reconcile[late_revocation_rewind] FAILED [ 78%]
+test_outputs.py::test_handcrafted_legacy_reconcile[amend_upgrade_proration] FAILED [ 80%]
+test_outputs.py::test_random_feed_legacy_reconcile FAILED                [ 82%]
+test_outputs.py::test_random_feed_legacy_split FAILED                    [ 84%]
+test_outputs.py::test_big_feed_one_shot FAILED                           [ 85%]
+test_outputs.py::test_big_feed_split FAILED                              [ 87%]
+test_outputs.py::test_big_feed_legacy_reconcile FAILED                   [ 89%]
+test_outputs.py::test_big_feed_killed_and_resumed FAILED                 [ 9[REDACTED]%]
+test_outputs.py::test_big_feed_split_killed_in_last_run FAILED           [ 92%]
+test_outputs.py::test_repeat_run_from_same_state_is_deterministic FAILED [ 94%]
+test_outputs.py::test_hand_computed_month_end_clamping FAILED            [ 96%]
+test_outputs.py::test_hand_computed_late_scan_rewind FAILED              [ 98%]
+test_outputs.py::test_hand_computed_refund_debt FAILED                   [[REDACTED]00%]
+
+=================================== FAILURES ===================================
+_______________________________ test_sample_feed _______________________________
+
+    def test_sample_feed():
+>       one_shot(SAMPLE)
+
+test_outputs.py:523: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-[REDACTED]0T[REDACTED]4:20:00Z', 'user_id': 'u_alice', 'event_id': '65[REDACTED]3270e-269e-4d37-b2a7-4de452e6b438', 'kind': 'gra...nd': 'spend', ...}, {'at': '2026-04-[REDACTED]5T[REDACTED]4:20:00Z', 'user_id': 'u_alice', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'sample one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: sample one-shot: ledger has 0 lines, expected 39
+
+test_outputs.py:377: Failed
+_____________________ test_handcrafted[amend_grace_window] _____________________
+
+name = 'amend_grace_window'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-04-20T[REDACTED]2:00:00Z', 'user_id': 'u_g[REDACTED]6', 'event_id': '949b7030-9fb8-4994-a990-bf360b695[REDACTED]b3', 'kind': 'grant...d': 'grant', ...}, {'at': '2026-06-30T00:00:00Z', 'user_id': 'u_g_edge', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'amend_grace_window one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: amend_grace_window one-shot: ledger has 0 lines, expected [REDACTED]4
+
+test_outputs.py:377: Failed
+_____________________ test_handcrafted[amend_signup_rules] _____________________
+
+name = 'amend_signup_rules'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-04-30T23:59:59Z', 'user_id': 'u_s90', 'event_id': '67d9849f-3c94-48e0-9974-b822f0a6[REDACTED]2e[REDACTED]', 'kind': 'grant...26-05-[REDACTED]3T00:00:00Z', 'user_id': 'u_sd', 'event_id': 'd584a285-e92[REDACTED]-45e8-9f76-78795f345ff4', 'kind': 'grant', ...}, ...]
+got = [], label = 'amend_signup_rules one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: amend_signup_rules one-shot: ledger has 0 lines, expected [REDACTED][REDACTED]
+
+test_outputs.py:377: Failed
+__________________ test_handcrafted[amend_upgrade_proration] ___________________
+
+name = 'amend_upgrade_proration'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-3[REDACTED]T[REDACTED]0:00:00Z', 'user_id': 'u_pro', 'event_id': '853720c5-c833-4e0[REDACTED]-9e37-20e8960a80da', 'kind': 'grant...6-02-2[REDACTED]T[REDACTED]0:00:00Z', 'user_id': 'u_pro', 'event_id': 'dd848e2d-5453-400d-b986-04aaa[REDACTED]808a5c', 'kind': 'spend', ...}, ...]
+got = [], label = 'amend_upgrade_proration one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: amend_upgrade_proration one-shot: ledger has 0 lines, expected 50
+
+test_outputs.py:377: Failed
+____________________ test_handcrafted[clamp_jan3[REDACTED]_monthly] _____________________
+
+name = 'clamp_jan3[REDACTED]_monthly'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-26T[REDACTED]0:00:00Z', 'user_id': 'u_clamp', 'event_id': 'e88b759[REDACTED]-3[REDACTED]db-4e32-98dc-b35f94c662cd', 'kind': 'gra...03-[REDACTED]5T00:00:00Z', 'user_id': 'u_clamp', 'event_id': 'c87383f4-b[REDACTED]42-4de[REDACTED]-bc47-57[REDACTED]849dc9b34', 'kind': 'spend', ...}, ...]
+got = [], label = 'clamp_jan3[REDACTED]_monthly one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: clamp_jan3[REDACTED]_monthly one-shot: ledger has 0 lines, expected [REDACTED]2
+
+test_outputs.py:377: Failed
+___________________ test_handcrafted[close_then_late_event] ____________________
+
+name = 'close_then_late_event'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-0[REDACTED]T00:00:00Z', 'user_id': 'u_close', 'event_id': 'c702a3d5-326a-44f5-8882-cb35e559dbb2', 'kind': 'gra..., 'kind': 'spend', ...}, {'at': '2026-04-0[REDACTED]T00:00:00Z', 'user_id': 'u_close', 'event_id': None, 'kind': 'expire', ...}]
+got = [], label = 'close_then_late_event one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: close_then_late_event one-shot: ledger has 0 lines, expected 4
+
+test_outputs.py:377: Failed
+____________________ test_handcrafted[debt_repaid_in_parts] ____________________
+
+name = 'debt_repaid_in_parts'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-06-0[REDACTED]T00:00:00Z', 'user_id': 'u_part', 'event_id': 'bd0fd87c-2e08-4d5a-8937-[REDACTED]7c4ed22d6f2', 'kind': 'spen...'2026-06-05T00:00:00Z', 'user_id': 'u_part', 'event_id': '3e4a4ec[REDACTED]-f6c2-4252-a[REDACTED]73-83f[REDACTED]6d96bff4', 'kind': 'spend', ...}]
+got = [], label = 'debt_repaid_in_parts one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: debt_repaid_in_parts one-shot: ledger has 0 lines, expected 5
+
+test_outputs.py:377: Failed
+____________________ test_handcrafted[downgrade_cancelled] _____________________
+
+name = 'downgrade_cancelled'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2025-06-0[REDACTED]T00:00:00Z', 'user_id': 'u_dc', 'event_id': '7336[REDACTED][REDACTED]da-7593-4e8d-baa0-c8cd4792c[REDACTED]02', 'kind': 'grant'...'kind': 'grant', ...}, {'at': '2025-09-0[REDACTED]T00:00:00Z', 'user_id': 'u_dc', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'downgrade_cancelled one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: downgrade_cancelled one-shot: ledger has 0 lines, expected 29
+
+test_outputs.py:377: Failed
+_____________________ test_handcrafted[downgrade_deferred] _____________________
+
+name = 'downgrade_deferred'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2025-05-20T07:00:00Z', 'user_id': 'u_down', 'event_id': '[REDACTED]5bf60ec-d0cd-49f3-b7[REDACTED]e-45[REDACTED]22[REDACTED]69c6[REDACTED]9', 'kind': 'gran...ind': 'spend', ...}, {'at': '2025-07-20T07:00:00Z', 'user_id': 'u_down', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'downgrade_deferred one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: downgrade_deferred one-shot: ledger has 0 lines, expected 39
+
+test_outputs.py:377: Failed
+__________________ test_handcrafted[downgrade_early_renewal] ___________________
+
+name = 'downgrade_early_renewal'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-[REDACTED]0T00:00:00Z', 'user_id': 'u_early', 'event_id': 'd4[REDACTED]3ffc6-38f7-4030-be28-02d6e66a3733', 'kind': 'gra...nd': 'expire', ...}, {'at': '2026-03-[REDACTED]0T00:00:00Z', 'user_id': 'u_early', 'event_id': None, 'kind': 'grant', ...}, ...]
+got = [], label = 'downgrade_early_renewal one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: downgrade_early_renewal one-shot: ledger has 0 lines, expected [REDACTED]5
+
+test_outputs.py:377: Failed
+______________________ test_handcrafted[duplicate_events] ______________________
+
+name = 'duplicate_events'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-04-0[REDACTED]T00:00:00Z', 'user_id': 'u_dup', 'event_id': 'ebd05eb7-3677-44a5-b2df-6035d3c[REDACTED]7334', 'kind': 'grant... '2026-04-03T00:00:00Z', 'user_id': 'u_dup', 'event_id': 'cfc98abd-9dfe-4[REDACTED]07-aabe-a29865c8459f', 'kind': 'spend', ...}]
+got = [], label = 'duplicate_events one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: duplicate_events one-shot: ledger has 0 lines, expected 3
+
+test_outputs.py:377: Failed
+____________________ test_handcrafted[events_before_signup] ____________________
+
+name = 'events_before_signup'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-04-09T[REDACTED]0:00:00Z', 'user_id': 'u_pre', 'event_id': 'df947fcc-9574-425f-b7d8-cb30[REDACTED]65963e8', 'kind': 'spend... '2026-04-[REDACTED][REDACTED]T[REDACTED]0:00:00Z', 'user_id': 'u_pre', 'event_id': '2d2bcb9e-ea27-46dc-a02e-da[REDACTED]d65d30abe', 'kind': 'spend', ...}]
+got = [], label = 'events_before_signup one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: events_before_signup one-shot: ledger has 0 lines, expected 5
+
+test_outputs.py:377: Failed
+_______________ test_handcrafted[expire_then_grant_same_instant] _______________
+
+name = 'expire_then_grant_same_instant'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-30T23:59:59Z', 'user_id': 'u_inst', 'event_id': '56[REDACTED]b[REDACTED][REDACTED]72-[REDACTED]90f-4327-900e-58363dadf2e8', 'kind': 'gran...ind': 'expire', ...}, {'at': '2026-03-30T23:59:59Z', 'user_id': 'u_inst', 'event_id': None, 'kind': 'grant', ...}, ...]
+got = [], label = 'expire_then_grant_same_instant one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: expire_then_grant_same_instant one-shot: ledger has 0 lines, expected 7
+
+test_outputs.py:377: Failed
+____________________ test_handcrafted[grace_lapse_restart] _____________________
+
+name = 'grace_lapse_restart'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-[REDACTED]5T09:00:00Z', 'user_id': 'u_lapse', 'event_id': '7aaf4542-e6ae-4c3c-ba6b-b9c4b5ef5e70', 'kind': 'gra...03-28T09:00:00Z', 'user_id': 'u_lapse', 'event_id': '7e7d2[REDACTED]df-f8a9-494c-8f49-795d300da[REDACTED]d[REDACTED]', 'kind': 'spend', ...}, ...]
+got = [], label = 'grace_lapse_restart one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: grace_lapse_restart one-shot: ledger has 0 lines, expected 8
+
+test_outputs.py:377: Failed
+____________________ test_handcrafted[grace_renewal_within] ____________________
+
+name = 'grace_renewal_within'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-[REDACTED]5T09:00:00Z', 'user_id': 'u_grace', 'event_id': '94aa3bff-595f-46ff-976[REDACTED]-[REDACTED]f4ee0cb[REDACTED]e6b', 'kind': 'gra...nd': 'spend', ...}, {'at': '2026-03-[REDACTED]5T09:00:00Z', 'user_id': 'u_grace', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'grace_renewal_within one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: grace_renewal_within one-shot: ledger has 0 lines, expected 8
+
+test_outputs.py:377: Failed
+_______________ test_handcrafted[junk_user_and_revoked_pending] ________________
+
+name = 'junk_user_and_revoked_pending'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-02-0[REDACTED]T00:00:00Z', 'user_id': 'u_keep', 'event_id': '3a9eda4b-790a-4302-a[REDACTED]57-42[REDACTED]d78cae60d', 'kind': 'gran...026-02-[REDACTED]0T00:00:00Z', 'user_id': 'u_keep', 'event_id': 'bdfb6d[REDACTED]3-[REDACTED]69d-4785-bca[REDACTED]-bef6a053d093', 'kind': 'forfeit', ...}]
+got = [], label = 'junk_user_and_revoked_pending one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: junk_user_and_revoked_pending one-shot: ledger has 0 lines, expected 2
+
+test_outputs.py:377: Failed
+___________________ test_handcrafted[lapse_boundary_second] ____________________
+
+name = 'lapse_boundary_second'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-02-0[REDACTED]T00:00:00Z', 'user_id': 'u_edge[REDACTED]', 'event_id': 'f[REDACTED]ff7a3c-304b-4f[REDACTED]7-bf75-a07f83d2f947', 'kind': 'gra...03-[REDACTED]7T00:00:00Z', 'user_id': 'u_edge[REDACTED]', 'event_id': 'bbde4bef-a2a0-4e92-a52a-[REDACTED]0c4f3f288b4', 'kind': 'grant', ...}, ...]
+got = [], label = 'lapse_boundary_second one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: lapse_boundary_second one-shot: ledger has 0 lines, expected 8
+
+test_outputs.py:377: Failed
+___________________ test_handcrafted[late_revocation_rewind] ___________________
+
+name = 'late_revocation_rewind'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-05T00:00:00Z', 'user_id': 'u_lr', 'event_id': '0[REDACTED]77f6dd-8c5a-45dd-87[REDACTED]e-6c53f5f5ba4[REDACTED]', 'kind': 'grant'...26-03-06T00:00:00Z', 'user_id': 'u_lr', 'event_id': '0f2d8[REDACTED]0d-f72a-4c49-b287-c9bf2d55[REDACTED]4c4', 'kind': 'spend', ...}, ...]
+got = [], label = 'late_revocation_rewind one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: late_revocation_rewind one-shot: ledger has 0 lines, expected [REDACTED][REDACTED]
+
+test_outputs.py:377: Failed
+______________________ test_handcrafted[late_scan_rewind] ______________________
+
+name = 'late_scan_rewind'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-0[REDACTED]T[REDACTED]2:00:00Z', 'user_id': 'u_late', 'event_id': 'ef2843ff-74cf-46a6-b6dc-09[REDACTED]4faa3075[REDACTED]', 'kind': 'gran...-05T[REDACTED]2:00:00Z', 'user_id': 'u_late', 'event_id': '7d3650f7-[REDACTED]e62-47ca-acdf-fcfcdf453dc9', 'kind': 'reversal', ...}, ...]
+got = [], label = 'late_scan_rewind one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: late_scan_rewind one-shot: ledger has 0 lines, expected [REDACTED]2
+
+test_outputs.py:377: Failed
+__________________ test_handcrafted[late_subscription_start] ___________________
+
+name = 'late_subscription_start'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-05-0[REDACTED]T00:00:00Z', 'user_id': 'u_ls', 'event_id': 'c4da537c-[REDACTED]65[REDACTED]-4dae-8486-7db30d67b366', 'kind': 'grant'...26-05-02T00:00:00Z', 'user_id': 'u_ls', 'event_id': '573e8d77-550a-4889-8ff4-[REDACTED]e8d8944897c', 'kind': 'grant', ...}, ...]
+got = [], label = 'late_subscription_start one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: late_subscription_start one-shot: ledger has 0 lines, expected 8
+
+test_outputs.py:377: Failed
+______________________ test_handcrafted[leap_day_yearly] _______________________
+
+name = 'leap_day_yearly'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2028-02-29T00:00:00Z', 'user_id': 'u_leap', 'event_id': '5bb58492-9daf-46be-ad2[REDACTED]-9[REDACTED]4625ee8c4c', 'kind': 'gran...ind': 'spend', ...}, {'at': '2028-04-29T00:00:00Z', 'user_id': 'u_leap', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'leap_day_yearly one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: leap_day_yearly one-shot: ledger has 0 lines, expected 40
+
+test_outputs.py:377: Failed
+_____________________ test_handcrafted[refund_debt_repay] ______________________
+
+name = 'refund_debt_repay'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-02-[REDACTED]0T08:00:00Z', 'user_id': 'u_debt', 'event_id': '32a7cae9-df32-4560-8500-2635f5bffffb', 'kind': 'gran...-02-[REDACTED]5T08:00:00Z', 'user_id': 'u_debt', 'event_id': 'c0e52aed-a7c3-4[REDACTED]c0-938b-5984[REDACTED]e3ce260', 'kind': 'grant', ...}, ...]
+got = [], label = 'refund_debt_repay one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: refund_debt_repay one-shot: ledger has 0 lines, expected 7
+
+test_outputs.py:377: Failed
+__________________ test_handcrafted[refund_unknown_and_twice] __________________
+
+name = 'refund_unknown_and_twice'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-02T00:00:00Z', 'user_id': 'u_ref', 'event_id': '8efd0f56-289d-4082-97d4-cac3665c7567', 'kind': 'grant...'2026-03-03T00:00:00Z', 'user_id': 'u_ref', 'event_id': 'b7476720-[REDACTED]e0a-4fa[REDACTED]-b3a5-28[REDACTED]768[REDACTED]aa4cf', 'kind': 'refund', ...}]
+got = [], label = 'refund_unknown_and_twice one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: refund_unknown_and_twice one-shot: ledger has 0 lines, expected 2
+
+test_outputs.py:377: Failed
+_______________________ test_handcrafted[revoke_yearly] ________________________
+
+name = 'revoke_yearly'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-[REDACTED]0T00:00:00Z', 'user_id': 'u_rev', 'event_id': 'cb6e[REDACTED]6b3-6356-4e6e-bdae-c44eef2bcaab', 'kind': 'grant...kind': 'expire', ...}, {'at': '2026-03-[REDACTED]0T00:00:00Z', 'user_id': 'u_rev', 'event_id': None, 'kind': 'grant', ...}, ...]
+got = [], label = 'revoke_yearly one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: revoke_yearly one-shot: ledger has 0 lines, expected 8
+
+test_outputs.py:377: Failed
+_____________________ test_handcrafted[same_second_events] _____________________
+
+name = 'same_second_events'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-02-02T02:02:02Z', 'user_id': 'u_same', 'event_id': 'cfd8984b-de[REDACTED]c-472f-a763-7e0807d27934', 'kind': 'spen...-02T02:02:02Z', 'user_id': 'u_same', 'event_id': '[REDACTED][REDACTED]64b983-da82-4063-87f9-a4d3e[REDACTED]bb0b42', 'kind': 'reversal', ...}, ...]
+got = [], label = 'same_second_events one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: same_second_events one-shot: ledger has 0 lines, expected [REDACTED]0
+
+test_outputs.py:377: Failed
+__________________ test_handcrafted[signup_twice_and_expiry] ___________________
+
+name = 'signup_twice_and_expiry'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-0[REDACTED]T00:00:00Z', 'user_id': 'u_sig', 'event_id': '8bd5502c-998c-450d-bed9-c258d2447cb9', 'kind': 'grant... '2026-04-0[REDACTED]T00:00:00Z', 'user_id': 'u_sig', 'event_id': 'f4acbde2-7bdc-40d9-b7ae-a06b7b[REDACTED]059e0', 'kind': 'spend', ...}]
+got = [], label = 'signup_twice_and_expiry one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: signup_twice_and_expiry one-shot: ledger has 0 lines, expected 4
+
+test_outputs.py:377: Failed
+______________________ test_handcrafted[spend_order_ties] ______________________
+
+name = 'spend_order_ties'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-05-05T05:05:05Z', 'user_id': 'u_tie', 'event_id': '946dd889-aa84-46d2-953d-50bd7b32fabb', 'kind': 'grant... '2026-05-07T05:05:05Z', 'user_id': 'u_tie', 'event_id': '74bf780d-ba8d-4786-bc78-5ccef6850ee[REDACTED]', 'kind': 'spend', ...}]
+got = [], label = 'spend_order_ties one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: spend_order_ties one-shot: ledger has 0 lines, expected 6
+
+test_outputs.py:377: Failed
+___________________ test_handcrafted[subscription_discards] ____________________
+
+name = 'subscription_discards'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-02T00:00:00Z', 'user_id': 'u_disc', 'event_id': '54fbf74f-4dc3-4b3d-849a-fd50c49f5b[REDACTED]7', 'kind': 'gran...026-03-05T00:00:00Z', 'user_id': 'u_disc', 'event_id': '25660a5d-845[REDACTED]-4768-8cda-2c2d9[REDACTED]bdbc90', 'kind': 'forfeit', ...}]
+got = [], label = 'subscription_discards one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: subscription_discards one-shot: ledger has 0 lines, expected 2
+
+test_outputs.py:377: Failed
+______________________ test_handcrafted[upgrade_forfeit] _______________________
+
+name = 'upgrade_forfeit'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-03T[REDACTED]8:30:00Z', 'user_id': 'u_up', 'event_id': 'c42e[REDACTED]ca0-94cf-4aba-9eab-cba[REDACTED]3f[REDACTED]97[REDACTED][REDACTED]e', 'kind': 'grant'...26-03-[REDACTED]4T[REDACTED]8:30:00Z', 'user_id': 'u_up', 'event_id': '8b4260e7-ffad-4795-acaf-8dfe2347f2d3', 'kind': 'spend', ...}, ...]
+got = [], label = 'upgrade_forfeit one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: upgrade_forfeit one-shot: ledger has 0 lines, expected [REDACTED]3
+
+test_outputs.py:377: Failed
+________________ test_handcrafted[yearly_two_periods_downgrade] ________________
+
+name = 'yearly_two_periods_downgrade'
+
+    @pytest.mark.parametrize("name", sorted(HANDCRAFTED))
+    def test_handcrafted(name):
+>       one_shot(HANDCRAFTED[name])
+
+test_outputs.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2024-08-3[REDACTED]T23:00:00Z', 'user_id': 'u_two', 'event_id': 'df368030-98d4-4ddc-b68b-43ae829092bf', 'kind': 'grant...4-[REDACTED]0-30T23:00:00Z', 'user_id': 'u_two', 'event_id': 'b767e4ab-733c-42e4-8daa-8383[REDACTED]b235996', 'kind': 'spend', ...}, ...]
+got = [], label = 'yearly_two_periods_downgrade one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: yearly_two_periods_downgrade one-shot: ledger has 0 lines, expected 72
+
+test_outputs.py:377: Failed
+__________________________ test_random_feed_one_shot ___________________________
+
+    def test_random_feed_one_shot():
+>       one_shot(RANDOM)
+
+test_outputs.py:532: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2025-06-0[REDACTED]T[REDACTED]2:2[REDACTED]:30Z', 'user_id': 'u_0088', 'event_id': '68[REDACTED]cd27[REDACTED]-e[REDACTED]bb-446b-a26f-c[REDACTED]c7b9[REDACTED]4f3ed', 'kind': 'gran...-06-04T[REDACTED]4:[REDACTED]0:0[REDACTED]Z', 'user_id': 'u_0072', 'event_id': 'ece6ddf0-a80c-4eb3-a3cf-236cc5d[REDACTED]e[REDACTED]52', 'kind': 'grant', ...}, ...]
+got = [], label = 'random_20260906 one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: random_20260906 one-shot: ledger has 0 lines, expected 45[REDACTED]7
+
+test_outputs.py:377: Failed
+_______________ test_handcrafted_split[amend_upgrade_proration] ________________
+
+name = 'amend_upgrade_proration'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:537: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-3[REDACTED]T[REDACTED]0:00:00Z', 'user_id': 'u_pro', 'event_id': '853720c5-c833-4e0[REDACTED]-9e37-20e8960a80da', 'kind': 'grant...6-02-2[REDACTED]T[REDACTED]0:00:00Z', 'user_id': 'u_pro', 'event_id': 'dd848e2d-5453-400d-b986-04aaa[REDACTED]808a5c', 'kind': 'spend', ...}, ...]
+got = [], label = 'amend_upgrade_proration split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: amend_upgrade_proration split, after chunk 0: ledger has 0 lines, expected [REDACTED]4
+
+test_outputs.py:377: Failed
+________________ test_handcrafted_split[close_then_late_event] _________________
+
+name = 'close_then_late_event'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:537: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-0[REDACTED]T00:00:00Z', 'user_id': 'u_close', 'event_id': 'c702a3d5-326a-44f5-8882-cb35e559dbb2', 'kind': 'gra..., 'kind': 'spend', ...}, {'at': '2026-04-0[REDACTED]T00:00:00Z', 'user_id': 'u_close', 'event_id': None, 'kind': 'expire', ...}]
+got = [], label = 'close_then_late_event split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: close_then_late_event split, after chunk 0: ledger has 0 lines, expected 3
+
+test_outputs.py:377: Failed
+___________________ test_handcrafted_split[duplicate_events] ___________________
+
+name = 'duplicate_events'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:537: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-04-0[REDACTED]T00:00:00Z', 'user_id': 'u_dup', 'event_id': 'ebd05eb7-3677-44a5-b2df-6035d3c[REDACTED]7334', 'kind': 'grant... '2026-04-02T00:00:00Z', 'user_id': 'u_dup', 'event_id': '3[REDACTED]b7ab97-7e7[REDACTED]-45c5-90e3-b4[REDACTED]2f[REDACTED]48f456', 'kind': 'grant', ...}]
+got = [], label = 'duplicate_events split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: duplicate_events split, after chunk 0: ledger has 0 lines, expected 2
+
+test_outputs.py:377: Failed
+________________ test_handcrafted_split[late_revocation_rewind] ________________
+
+name = 'late_revocation_rewind'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:537: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-05T00:00:00Z', 'user_id': 'u_lr', 'event_id': '0[REDACTED]77f6dd-8c5a-45dd-87[REDACTED]e-6c53f5f5ba4[REDACTED]', 'kind': 'grant'...: '2026-03-06T00:00:00Z', 'user_id': 'u_lr', 'event_id': '0f2d8[REDACTED]0d-f72a-4c49-b287-c9bf2d55[REDACTED]4c4', 'kind': 'spend', ...}]
+got = [], label = 'late_revocation_rewind split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: late_revocation_rewind split, after chunk 0: ledger has 0 lines, expected 6
+
+test_outputs.py:377: Failed
+___________________ test_handcrafted_split[late_scan_rewind] ___________________
+
+name = 'late_scan_rewind'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:537: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-0[REDACTED]T[REDACTED]2:00:00Z', 'user_id': 'u_late', 'event_id': 'ef2843ff-74cf-46a6-b6dc-09[REDACTED]4faa3075[REDACTED]', 'kind': 'gran...'2026-03-04T[REDACTED]2:00:00Z', 'user_id': 'u_late', 'event_id': 'a7820e[REDACTED]2-[REDACTED]f36-4dcd-bd38-74249a4d6[REDACTED]77', 'kind': 'spend', ...}]
+got = [], label = 'late_scan_rewind split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: late_scan_rewind split, after chunk 0: ledger has 0 lines, expected 4
+
+test_outputs.py:377: Failed
+_______________ test_handcrafted_split[late_subscription_start] ________________
+
+name = 'late_subscription_start'
+
+    @pytest.mark.parametrize("name", sorted(SPLIT_CASES))
+    def test_handcrafted_split(name):
+>       split_runs(HANDCRAFTED[name])
+
+test_outputs.py:537: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-05-0[REDACTED]T00:00:00Z', 'user_id': 'u_ls', 'event_id': 'c4da537c-[REDACTED]65[REDACTED]-4dae-8486-7db30d67b366', 'kind': 'grant'...: '2026-05-04T00:00:00Z', 'user_id': 'u_ls', 'event_id': '6[REDACTED]0e4ad5-09c4-4055-9ff4-948fe6b4f832', 'kind': 'spend', ...}]
+got = [], label = 'late_subscription_start split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: late_subscription_start split, after chunk 0: ledger has 0 lines, expected 3
+
+test_outputs.py:377: Failed
+______________________________ test_sample_split _______________________________
+
+    def test_sample_split():
+>       split_runs(SAMPLE)
+
+test_outputs.py:54[REDACTED]: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-[REDACTED]0T[REDACTED]4:20:00Z', 'user_id': 'u_alice', 'event_id': '65[REDACTED]3270e-269e-4d37-b2a7-4de452e6b438', 'kind': 'gra...nd': 'spend', ...}, {'at': '2026-04-[REDACTED]5T[REDACTED]4:20:00Z', 'user_id': 'u_alice', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'sample split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: sample split, after chunk 0: ledger has 0 lines, expected 20
+
+test_outputs.py:377: Failed
+____________________________ test_random_feed_split ____________________________
+
+    def test_random_feed_split():
+>       split_runs(RANDOM)
+
+test_outputs.py:545: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2025-06-0[REDACTED]T[REDACTED]2:2[REDACTED]:30Z', 'user_id': 'u_0088', 'event_id': '68[REDACTED]cd27[REDACTED]-e[REDACTED]bb-446b-a26f-c[REDACTED]c7b9[REDACTED]4f3ed', 'kind': 'gran...-06-04T[REDACTED]4:[REDACTED]0:0[REDACTED]Z', 'user_id': 'u_0072', 'event_id': 'ece6ddf0-a80c-4eb3-a3cf-236cc5d[REDACTED]e[REDACTED]52', 'kind': 'grant', ...}, ...]
+got = [], label = 'random_20260906 split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: random_20260906 split, after chunk 0: ledger has 0 lines, expected 75[REDACTED]
+
+test_outputs.py:377: Failed
+_________________________ test_sample_legacy_reconcile _________________________
+
+    def test_sample_legacy_reconcile():
+>       one_shot(SAMPLE, with_legacy=True)
+
+test_outputs.py:553: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-[REDACTED]4T[REDACTED]4:20:00Z', 'user_id': 'u_alice', 'event_id': '65[REDACTED]3270e-269e-4d37-b2a7-4de452e6b438', 'kind': 'rev...[REDACTED]5T[REDACTED]4:20:00Z', 'user_id': 'u_alice', 'event_id': '65[REDACTED]3270e-269e-4d37-b2a7-4de452e6b438', 'kind': 'reversal', ...}, ...]
+got = [], label = 'sample legacy one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: sample legacy one-shot: ledger has 0 lines, expected 59
+
+test_outputs.py:377: Failed
+_______ test_handcrafted_legacy_reconcile[yearly_two_periods_downgrade] ________
+
+name = 'yearly_two_periods_downgrade'
+
+    @pytest.mark.parametrize("name", LEGACY_CASES)
+    def test_handcrafted_legacy_reconcile(name):
+>       one_shot(HANDCRAFTED[name], with_legacy=True)
+
+test_outputs.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2025-08-3[REDACTED]T23:00:00Z', 'user_id': 'u_two', 'event_id': 'df368030-98d4-4ddc-b68b-43ae829092bf', 'kind': 'rever...8-3[REDACTED]T23:00:00Z', 'user_id': 'u_two', 'event_id': 'df368030-98d4-4ddc-b68b-43ae829092bf', 'kind': 'reversal', ...}, ...]
+got = [], label = 'yearly_two_periods_downgrade legacy one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: yearly_two_periods_downgrade legacy one-shot: ledger has 0 lines, expected [REDACTED]20
+
+test_outputs.py:377: Failed
+____________ test_handcrafted_legacy_reconcile[grace_lapse_restart] ____________
+
+name = 'grace_lapse_restart'
+
+    @pytest.mark.parametrize("name", LEGACY_CASES)
+    def test_handcrafted_legacy_reconcile(name):
+>       one_shot(HANDCRAFTED[name], with_legacy=True)
+
+test_outputs.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-03-07T09:00:00Z', 'user_id': 'u_lapse', 'event_id': '7aaf4542-e6ae-4c3c-ba6b-b9c4b5ef5e70', 'kind': 'rev...nd': 'grant', ...}, {'at': '2026-02-[REDACTED]5T09:00:00Z', 'user_id': 'u_lapse', 'event_id': None, 'kind': 'expire', ...}, ...]
+got = [], label = 'grace_lapse_restart legacy one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: grace_lapse_restart legacy one-shot: ledger has 0 lines, expected [REDACTED]2
+
+test_outputs.py:377: Failed
+_____________ test_handcrafted_legacy_reconcile[duplicate_events] ______________
+
+name = 'duplicate_events'
+
+    @pytest.mark.parametrize("name", LEGACY_CASES)
+    def test_handcrafted_legacy_reconcile(name):
+>       one_shot(HANDCRAFTED[name], with_legacy=True)
+
+test_outputs.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-04-03T00:00:00Z', 'user_id': 'u_dup', 'event_id': 'ebd05eb7-3677-44a5-b2df-6035d3c[REDACTED]7334', 'kind': 'rever... '2026-04-03T00:00:00Z', 'user_id': 'u_dup', 'event_id': 'cfc98abd-9dfe-4[REDACTED]07-aabe-a29865c8459f', 'kind': 'spend', ...}]
+got = [], label = 'duplicate_events legacy one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: duplicate_events legacy one-shot: ledger has 0 lines, expected 5
+
+test_outputs.py:377: Failed
+__________ test_handcrafted_legacy_reconcile[late_revocation_rewind] ___________
+
+name = 'late_revocation_rewind'
+
+    @pytest.mark.parametrize("name", LEGACY_CASES)
+    def test_handcrafted_legacy_reconcile(name):
+>       one_shot(HANDCRAFTED[name], with_legacy=True)
+
+test_outputs.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-0[REDACTED]-05T00:00:00Z', 'user_id': 'u_lr', 'event_id': '0[REDACTED]77f6dd-8c5a-45dd-87[REDACTED]e-6c53f5f5ba4[REDACTED]', 'kind': 'revers...0[REDACTED]-05T00:00:00Z', 'user_id': 'u_lr', 'event_id': '0[REDACTED]77f6dd-8c5a-45dd-87[REDACTED]e-6c53f5f5ba4[REDACTED]', 'kind': 'reversal', ...}, ...]
+got = [], label = 'late_revocation_rewind legacy one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: late_revocation_rewind legacy one-shot: ledger has 0 lines, expected 23
+
+test_outputs.py:377: Failed
+__________ test_handcrafted_legacy_reconcile[amend_upgrade_proration] __________
+
+name = 'amend_upgrade_proration'
+
+    @pytest.mark.parametrize("name", LEGACY_CASES)
+    def test_handcrafted_legacy_reconcile(name):
+>       one_shot(HANDCRAFTED[name], with_legacy=True)
+
+test_outputs.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-02-2[REDACTED]T[REDACTED]0:00:00Z', 'user_id': 'u_pro', 'event_id': '853720c5-c833-4e0[REDACTED]-9e37-20e8960a80da', 'kind': 'rever...02-20T[REDACTED]3:00:00Z', 'user_id': 'u_pro', 'event_id': '66[REDACTED]7dd57-f482-40a5-b[REDACTED]dc-0[REDACTED]d6e36bbfe6', 'kind': 'forfeit', ...}, ...]
+got = [], label = 'amend_upgrade_proration legacy one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: amend_upgrade_proration legacy one-shot: ledger has 0 lines, expected 56
+
+test_outputs.py:377: Failed
+______________________ test_random_feed_legacy_reconcile _______________________
+
+    def test_random_feed_legacy_reconcile():
+>       one_shot(RANDOM, with_legacy=True)
+
+test_outputs.py:562: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:459: in one_shot
+    compare_ledgers(ref.ledger, got.ledger, label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-02-07T[REDACTED]6:50:20Z', 'user_id': 'u_0088', 'event_id': '68[REDACTED]cd27[REDACTED]-e[REDACTED]bb-446b-a26f-c[REDACTED]c7b9[REDACTED]4f3ed', 'kind': 'reve...-2[REDACTED]T00:[REDACTED]6:32Z', 'user_id': 'u_0088', 'event_id': '68[REDACTED]cd27[REDACTED]-e[REDACTED]bb-446b-a26f-c[REDACTED]c7b9[REDACTED]4f3ed', 'kind': 'reversal', ...}, ...]
+got = [], label = 'random_20260906 legacy one-shot'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: random_20260906 legacy one-shot: ledger has 0 lines, expected 6970
+
+test_outputs.py:377: Failed
+________________________ test_random_feed_legacy_split _________________________
+
+    def test_random_feed_legacy_split():
+>       split_runs(RANDOM, with_legacy=True)
+
+test_outputs.py:566: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:496: in split_runs
+    compare_ledgers(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2026-02-07T[REDACTED]6:50:20Z', 'user_id': 'u_0088', 'event_id': '68[REDACTED]cd27[REDACTED]-e[REDACTED]bb-446b-a26f-c[REDACTED]c7b9[REDACTED]4f3ed', 'kind': 'reve...-2[REDACTED]T00:[REDACTED]6:32Z', 'user_id': 'u_0088', 'event_id': '68[REDACTED]cd27[REDACTED]-e[REDACTED]bb-446b-a26f-c[REDACTED]c7b9[REDACTED]4f3ed', 'kind': 'reversal', ...}, ...]
+got = [], label = 'random_20260906 split, after chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: random_20260906 split, after chunk 0: ledger has 0 lines, expected 3204
+
+test_outputs.py:377: Failed
+____________________________ test_big_feed_one_shot ____________________________
+
+    def test_big_feed_one_shot():
+>       one_shot(big_scenario())
+
+test_outputs.py:576: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:457: in one_shot
+    compare_ledger_files([ref.ledger_path], [got.ledger_path], label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected_paths = ['/work/ref/big-fe[REDACTED]40bd7/one.ledger.jsonl']
+got_paths = ['/work/ref/big-fe[REDACTED]40bd7/one.agent.ledger.jsonl']
+label = 'big one-shot'
+
+    def compare_ledger_files(expected_paths, got_paths, label):
+        """Stream two ledgers (each given as a list of files) and compare line by line."""
+        def chain(paths):
+            for p in paths:
+                for item in _iter_ledger(p):
+                    yield item
+        for p in got_paths:
+            size = os.path.getsize(p)
+            if size > MAX_OUTPUT_BYTES:
+                pytest.fail("%s: ledger output is %d bytes, larger than the limit" % (label, size))
+        ea = chain(expected_paths)
+        ga = chain(got_paths)
+        i = 0
+        while True:
+            e = next(ea, None)
+            g = next(ga, None)
+            if e is None and g is None:
+                return
+            i += [REDACTED]
+            if e is None or g is None:
+>               pytest.fail("%s: ledger has %s lines, expected %s" % (
+                    label, "more than %d" % (i - [REDACTED]) if e is None else i - [REDACTED], i if e is not None else i - [REDACTED]))
+E               Failed: big one-shot: ledger has 0 lines, expected [REDACTED]
+
+test_outputs.py:4[REDACTED]2: Failed
+_____________________________ test_big_feed_split ______________________________
+
+    def test_big_feed_split():
+>       split_runs(big_scenario())
+
+test_outputs.py:580: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:492: in split_runs
+    compare_ledger_files(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected_paths = ['/work/ref/big-split-[REDACTED]f588ddf/chunk0.ledger.jsonl']
+got_paths = ['/work/ref/big-split-[REDACTED]f588ddf/chunk0.agent.ledger.jsonl']
+label = 'big split, after chunk 0'
+
+    def compare_ledger_files(expected_paths, got_paths, label):
+        """Stream two ledgers (each given as a list of files) and compare line by line."""
+        def chain(paths):
+            for p in paths:
+                for item in _iter_ledger(p):
+                    yield item
+        for p in got_paths:
+            size = os.path.getsize(p)
+            if size > MAX_OUTPUT_BYTES:
+                pytest.fail("%s: ledger output is %d bytes, larger than the limit" % (label, size))
+        ea = chain(expected_paths)
+        ga = chain(got_paths)
+        i = 0
+        while True:
+            e = next(ea, None)
+            g = next(ga, None)
+            if e is None and g is None:
+                return
+            i += [REDACTED]
+            if e is None or g is None:
+>               pytest.fail("%s: ledger has %s lines, expected %s" % (
+                    label, "more than %d" % (i - [REDACTED]) if e is None else i - [REDACTED], i if e is not None else i - [REDACTED]))
+E               Failed: big split, after chunk 0: ledger has 0 lines, expected [REDACTED]
+
+test_outputs.py:4[REDACTED]2: Failed
+________________________ test_big_feed_legacy_reconcile ________________________
+
+    def test_big_feed_legacy_reconcile():
+>       one_shot(big_scenario(), with_legacy=True)
+
+test_outputs.py:584: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:457: in one_shot
+    compare_ledger_files([ref.ledger_path], [got.ledger_path], label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected_paths = ['/work/ref/big-legacy-e26ca5[REDACTED]8/one.ledger.jsonl']
+got_paths = ['/work/ref/big-legacy-e26ca5[REDACTED]8/one.agent.ledger.jsonl']
+label = 'big legacy one-shot'
+
+    def compare_ledger_files(expected_paths, got_paths, label):
+        """Stream two ledgers (each given as a list of files) and compare line by line."""
+        def chain(paths):
+            for p in paths:
+                for item in _iter_ledger(p):
+                    yield item
+        for p in got_paths:
+            size = os.path.getsize(p)
+            if size > MAX_OUTPUT_BYTES:
+                pytest.fail("%s: ledger output is %d bytes, larger than the limit" % (label, size))
+        ea = chain(expected_paths)
+        ga = chain(got_paths)
+        i = 0
+        while True:
+            e = next(ea, None)
+            g = next(ga, None)
+            if e is None and g is None:
+                return
+            i += [REDACTED]
+            if e is None or g is None:
+>               pytest.fail("%s: ledger has %s lines, expected %s" % (
+                    label, "more than %d" % (i - [REDACTED]) if e is None else i - [REDACTED], i if e is not None else i - [REDACTED]))
+E               Failed: big legacy one-shot: ledger has 0 lines, expected [REDACTED]
+
+test_outputs.py:4[REDACTED]2: Failed
+_______________________ test_big_feed_killed_and_resumed _______________________
+
+    def test_big_feed_killed_and_resumed():
+>       one_shot(big_scenario(), kills=True)
+
+test_outputs.py:594: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:457: in one_shot
+    compare_ledger_files([ref.ledger_path], [got.ledger_path], label)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected_paths = ['/work/ref/big-crash-c2[REDACTED]30537/one.ledger.jsonl']
+got_paths = ['/work/ref/big-crash-c2[REDACTED]30537/one.agent.ledger.jsonl']
+label = 'big one-shot with kills'
+
+    def compare_ledger_files(expected_paths, got_paths, label):
+        """Stream two ledgers (each given as a list of files) and compare line by line."""
+        def chain(paths):
+            for p in paths:
+                for item in _iter_ledger(p):
+                    yield item
+        for p in got_paths:
+            size = os.path.getsize(p)
+            if size > MAX_OUTPUT_BYTES:
+                pytest.fail("%s: ledger output is %d bytes, larger than the limit" % (label, size))
+        ea = chain(expected_paths)
+        ga = chain(got_paths)
+        i = 0
+        while True:
+            e = next(ea, None)
+            g = next(ga, None)
+            if e is None and g is None:
+                return
+            i += [REDACTED]
+            if e is None or g is None:
+>               pytest.fail("%s: ledger has %s lines, expected %s" % (
+                    label, "more than %d" % (i - [REDACTED]) if e is None else i - [REDACTED], i if e is not None else i - [REDACTED]))
+E               Failed: big one-shot with kills: ledger has 0 lines, expected [REDACTED]
+
+test_outputs.py:4[REDACTED]2: Failed
+____________________ test_big_feed_split_killed_in_last_run ____________________
+
+    def test_big_feed_split_killed_in_last_run():
+        # The killed run covers nine tenths of the feed, so that no program can
+        # finish it inside one kill interval and restart from scratch unnoticed.
+        sc = dict(big_scenario())
+        sc["name"] = "big-late-cut"
+        sc["splits"] = [len(sc["lines"]) // [REDACTED]0]
+>       split_runs(sc, kills_in_last=True)
+
+test_outputs.py:603: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_outputs.py:492: in split_runs
+    compare_ledger_files(ref_all, agent_all, "%s split, after chunk %d" % (sc["name"], i))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected_paths = ['/work/ref/big-late-cut-split-crash-d5070[REDACTED]3c/chunk0.ledger.jsonl']
+got_paths = ['/work/ref/big-late-cut-split-crash-d5070[REDACTED]3c/chunk0.agent.ledger.jsonl']
+label = 'big-late-cut split, after chunk 0'
+
+    def compare_ledger_files(expected_paths, got_paths, label):
+        """Stream two ledgers (each given as a list of files) and compare line by line."""
+        def chain(paths):
+            for p in paths:
+                for item in _iter_ledger(p):
+                    yield item
+        for p in got_paths:
+            size = os.path.getsize(p)
+            if size > MAX_OUTPUT_BYTES:
+                pytest.fail("%s: ledger output is %d bytes, larger than the limit" % (label, size))
+        ea = chain(expected_paths)
+        ga = chain(got_paths)
+        i = 0
+        while True:
+            e = next(ea, None)
+            g = next(ga, None)
+            if e is None and g is None:
+                return
+            i += [REDACTED]
+            if e is None or g is None:
+>               pytest.fail("%s: ledger has %s lines, expected %s" % (
+                    label, "more than %d" % (i - [REDACTED]) if e is None else i - [REDACTED], i if e is not None else i - [REDACTED]))
+E               Failed: big-late-cut split, after chunk 0: ledger has 0 lines, expected [REDACTED]
+
+test_outputs.py:4[REDACTED]2: Failed
+_______________ test_repeat_run_from_same_state_is_deterministic _______________
+
+    def test_repeat_run_from_same_state_is_deterministic():
+        sc = RANDOM
+        cut = sc["splits"][[REDACTED]]
+        work = Work("determinism")
+        feed0 = os.path.join(work.ref, "c0.jsonl")
+        feed[REDACTED] = os.path.join(work.ref, "c[REDACTED].jsonl")
+        write_feed(sc["lines"][:cut], feed0)
+        write_feed(sc["lines"][cut:], feed[REDACTED])
+        first = run_agent(feed0, None, None, work, "c0")
+        ref = run_reference(feed0, None, None, work, "c0")
+>       compare_ledgers(ref.ledger, first.ledger, "determinism chunk 0")
+
+test_outputs.py:6[REDACTED]6: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = [{'at': '2025-06-0[REDACTED]T[REDACTED]2:2[REDACTED]:30Z', 'user_id': 'u_0088', 'event_id': '68[REDACTED]cd27[REDACTED]-e[REDACTED]bb-446b-a26f-c[REDACTED]c7b9[REDACTED]4f3ed', 'kind': 'gran...-06-04T[REDACTED]4:[REDACTED]0:0[REDACTED]Z', 'user_id': 'u_0072', 'event_id': 'ece6ddf0-a80c-4eb3-a3cf-236cc5d[REDACTED]e[REDACTED]52', 'kind': 'grant', ...}, ...]
+got = [], label = 'determinism chunk 0'
+
+    def compare_ledgers(expected, got, label):
+        exp = [_canon_posting(p) for p in expected]
+        act = [_canon_posting(p) for p in got]
+        if exp == act:
+            return
+        n = min(len(exp), len(act))
+        for i in range(n):
+            if exp[i] != act[i]:
+                pytest.fail("%s: ledger differs at line %d\nexpected: %s\ngot:      %s" % (
+                    label, i + [REDACTED], json.dumps(exp[i], sort_keys=True), json.dumps(act[i], sort_keys=True)))
+>       pytest.fail("%s: ledger has %d lines, expected %d" % (label, len(act), len(exp)))
+E       Failed: determinism chunk 0: ledger has 0 lines, expected 2[REDACTED]45
+
+test_outputs.py:377: Failed
+____________________ test_hand_computed_month_end_clamping _____________________
+
+    def test_hand_computed_month_end_clamping():
+        # Anchor 2026-0[REDACTED]-3[REDACTED]T[REDACTED]0:00:00Z. Boundaries clamp to Feb 28 and return to
+        # Mar 3[REDACTED], Apr 30, May 3[REDACTED]. Expiry fires before the grant at the same instant.
+        _, ledger, report = _run_by_hand("clamp_jan3[REDACTED]_monthly")
+        expected = [
+            ("2026-0[REDACTED]-26T[REDACTED]0:00:00Z", "grant", "signup:u_clamp", [REDACTED]00, [REDACTED]00),
+            ("2026-0[REDACTED]-3[REDACTED]T[REDACTED]0:00:00Z", "grant", "sub:s_clamp:0:0", 400, 500),
+            ("2026-02-03T[REDACTED]0:00:00Z", "spend", None, -30, 470),
+            ("2026-02-28T[REDACTED]0:00:00Z", "expire", "sub:s_clamp:0:0", -370, [REDACTED]00),
+            ("2026-02-28T[REDACTED]0:00:00Z", "grant", "sub:s_clamp:0:[REDACTED]", 400, 500),
+            ("2026-03-[REDACTED]5T00:00:00Z", "spend", None, -25, 475),
+            ("2026-03-3[REDACTED]T[REDACTED]0:00:00Z", "expire", "sub:s_clamp:0:[REDACTED]", -375, [REDACTED]00),
+            ("2026-03-3[REDACTED]T[REDACTED]0:00:00Z", "grant", "sub:s_clamp:0:2", 400, 500),
+            ("2026-04-26T[REDACTED]0:00:00Z", "expire", "signup:u_clamp", -[REDACTED]00, 400),
+            ("2026-04-30T[REDACTED]0:00:00Z", "expire", "sub:s_clamp:0:2", -400, 0),
+            ("2026-04-30T[REDACTED]0:00:00Z", "grant", "sub:s_clamp:0:3", 400, 400),
+            ("2026-05-3[REDACTED]T[REDACTED]0:00:00Z", "expire", "sub:s_clamp:0:3", -400, 0),
+        ]
+>       assert _rows(ledger) == expected, "clamp case rows differ:\n%s" % json.dumps(_rows(ledger), indent=[REDACTED])
+E       AssertionError: clamp case rows differ:
+E         []
+E       assert [] == [('2026-0[REDACTED]-26...25, 475), ...]
+E         
+E         Right contains [REDACTED]2 more items, first extra item: ('2026-0[REDACTED]-26T[REDACTED]0:00:00Z', 'grant', 'signup:u_clamp', [REDACTED]00, [REDACTED]00)
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (84 lines hidden), use '-vv' to show
+
+test_outputs.py:662: AssertionError
+_____________________ test_hand_computed_late_scan_rewind ______________________
+
+    def test_hand_computed_late_scan_rewind():
+        # A scan of 80 credits at 2026-03-02T[REDACTED]3:00:00Z arrives after three later
+        # scans were posted. The three later spends are reversed newest first, then
+        # the late spend and the three spends are posted again.
+        sc, ledger, report = _run_by_hand("late_scan_rewind")
+        late_id = [e["id"] for e in sc["lines"] if e["occurred_at"] == "2026-03-02T[REDACTED]3:00:00Z"][0]
+        expected = [
+            ("2026-03-0[REDACTED]T[REDACTED]2:00:00Z", "grant", "signup:u_late", [REDACTED]00, [REDACTED]00),
+            ("2026-03-02T[REDACTED]2:00:00Z", "grant", "topup:tx_late_[REDACTED]", [REDACTED]00, 200),
+            ("2026-03-03T[REDACTED]2:00:00Z", "spend", None, -40, [REDACTED]60),
+            ("2026-03-04T[REDACTED]2:00:00Z", "spend", None, -90, 70),
+            ("2026-03-05T[REDACTED]2:00:00Z", "spend", None, -50, 20),
+            ("2026-03-05T[REDACTED]2:00:00Z", "reversal", None, 50, 70),
+            ("2026-03-04T[REDACTED]2:00:00Z", "reversal", None, 90, [REDACTED]60),
+            ("2026-03-03T[REDACTED]2:00:00Z", "reversal", None, 40, 200),
+            ("2026-03-02T[REDACTED]3:00:00Z", "spend", None, -80, [REDACTED]20),
+            ("2026-03-03T[REDACTED]2:00:00Z", "spend", None, -40, 80),
+            ("2026-03-04T[REDACTED]2:00:00Z", "spend", None, -90, -[REDACTED]0),
+            ("2026-03-05T[REDACTED]2:00:00Z", "spend", None, -50, -60),
+        ]
+>       assert _rows(ledger) == expected, "late scan rows differ:\n%s" % json.dumps(_rows(ledger), indent=[REDACTED])
+E       AssertionError: late scan rows differ:
+E         []
+E       assert [] == [('2026-03-0[REDACTED]... 50, 70), ...]
+E         
+E         Right contains [REDACTED]2 more items, first extra item: ('2026-03-0[REDACTED]T[REDACTED]2:00:00Z', 'grant', 'signup:u_late', [REDACTED]00, [REDACTED]00)
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (84 lines hidden), use '-vv' to show
+
+test_outputs.py:692: AssertionError
+________________________ test_hand_computed_refund_debt ________________________
+
+    def test_hand_computed_refund_debt():
+        # Refund of a 300 credit top-up after 250 were spent: 50 come back from the
+        # bucket and 250 become debt. The next grants repay [REDACTED]00 and then [REDACTED]60.
+        _, ledger, report = _run_by_hand("refund_debt_repay")
+        expected = [
+            ("2026-02-[REDACTED]0T08:00:00Z", "grant", "topup:tx_debt_[REDACTED]", 300, 300),
+            ("2026-02-[REDACTED][REDACTED]T08:00:00Z", "spend", None, -250, 50),
+            ("2026-02-[REDACTED]2T08:00:00Z", "refund", "topup:tx_debt_[REDACTED]", -300, -250),
+            ("2026-02-[REDACTED]3T08:00:00Z", "spend", None, -[REDACTED]0, -260),
+            ("2026-02-[REDACTED]4T08:00:00Z", "grant", "topup:tx_debt_2", [REDACTED]00, -[REDACTED]60),
+            ("2026-02-[REDACTED]5T08:00:00Z", "grant", "topup:tx_debt_3", 300, [REDACTED]40),
+            ("2026-02-[REDACTED]6T08:00:00Z", "spend", None, -20, [REDACTED]20),
+        ]
+>       assert _rows(ledger) == expected, "refund case rows differ:\n%s" % json.dumps(_rows(ledger), indent=[REDACTED])
+E       AssertionError: refund case rows differ:
+E         []
+E       assert [] == [('2026-02-[REDACTED]0...00, [REDACTED]40), ...]
+E         
+E         Right contains 7 more items, first extra item: ('2026-02-[REDACTED]0T08:00:00Z', 'grant', 'topup:tx_debt_[REDACTED]', 300, 300)
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (49 lines hidden), use '-vv' to show
+
+test_outputs.py:7[REDACTED]5: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED test_outputs.py::test_program_exists_and_is_executable
+FAILED test_outputs.py::test_sample_feed - Failed: sample one-shot: ledger ha...
+FAILED test_outputs.py::test_handcrafted[amend_grace_window] - Failed: amend_...
+FAILED test_outputs.py::test_handcrafted[amend_signup_rules] - Failed: amend_...
+FAILED test_outputs.py::test_handcrafted[amend_upgrade_proration] - Failed: a...
+FAILED test_outputs.py::test_handcrafted[clamp_jan3[REDACTED]_monthly] - Failed: clamp...
+FAILED test_outputs.py::test_handcrafted[close_then_late_event] - Failed: clo...
+FAILED test_outputs.py::test_handcrafted[debt_repaid_in_parts] - Failed: debt...
+FAILED test_outputs.py::test_handcrafted[downgrade_cancelled] - Failed: downg...
+FAILED test_outputs.py::test_handcrafted[downgrade_deferred] - Failed: downgr...
+FAILED test_outputs.py::test_handcrafted[downgrade_early_renewal] - Failed: d...
+FAILED test_outputs.py::test_handcrafted[duplicate_events] - Failed: duplicat...
+FAILED test_outputs.py::test_handcrafted[events_before_signup] - Failed: even...
+FAILED test_outputs.py::test_handcrafted[expire_then_grant_same_instant] - Fa...
+FAILED test_outputs.py::test_handcrafted[grace_lapse_restart] - Failed: grace...
+FAILED test_outputs.py::test_handcrafted[grace_renewal_within] - Failed: grac...
+FAILED test_outputs.py::test_handcrafted[junk_user_and_revoked_pending] - Fai...
+FAILED test_outputs.py::test_handcrafted[lapse_boundary_second] - Failed: lap...
+FAILED test_outputs.py::test_handcrafted[late_revocation_rewind] - Failed: la...
+FAILED test_outputs.py::test_handcrafted[late_scan_rewind] - Failed: late_sca...
+FAILED test_outputs.py::test_handcrafted[late_subscription_start] - Failed: l...
+FAILED test_outputs.py::test_handcrafted[leap_day_yearly] - Failed: leap_day_...
+FAILED test_outputs.py::test_handcrafted[refund_debt_repay] - Failed: refund_...
+FAILED test_outputs.py::test_handcrafted[refund_unknown_and_twice] - Failed: ...
+FAILED test_outputs.py::test_handcrafted[revoke_yearly] - Failed: revoke_year...
+FAILED test_outputs.py::test_handcrafted[same_second_events] - Failed: same_s...
+FAILED test_outputs.py::test_handcrafted[signup_twice_and_expiry] - Failed: s...
+FAILED test_outputs.py::test_handcrafted[spend_order_ties] - Failed: spend_or...
+FAILED test_outputs.py::test_handcrafted[subscription_discards] - Failed: sub...
+FAILED test_outputs.py::test_handcrafted[upgrade_forfeit] - Failed: upgrade_f...
+FAILED test_outputs.py::test_handcrafted[yearly_two_periods_downgrade] - Fail...
+FAILED test_outputs.py::test_random_feed_one_shot - Failed: random_20260906 o...
+FAILED test_outputs.py::test_handcrafted_split[amend_upgrade_proration] - Fai...
+FAILED test_outputs.py::test_handcrafted_split[close_then_late_event] - Faile...
+FAILED test_outputs.py::test_handcrafted_split[duplicate_events] - Failed: du...
+FAILED test_outputs.py::test_handcrafted_split[late_revocation_rewind] - Fail...
+FAILED test_outputs.py::test_handcrafted_split[late_scan_rewind] - Failed: la...
+FAILED test_outputs.py::test_handcrafted_split[late_subscription_start] - Fai...
+FAILED test_outputs.py::test_sample_split - Failed: sample split, after chunk...
+FAILED test_outputs.py::test_random_feed_split - Failed: random_20260906 spli...
+FAILED test_outputs.py::test_sample_legacy_reconcile - Failed: sample legacy ...
+FAILED test_outputs.py::test_handcrafted_legacy_reconcile[yearly_two_periods_downgrade]
+FAILED test_outputs.py::test_handcrafted_legacy_reconcile[grace_lapse_restart]
+FAILED test_outputs.py::test_handcrafted_legacy_reconcile[duplicate_events]
+FAILED test_outputs.py::test_handcrafted_legacy_reconcile[late_revocation_rewind]
+FAILED test_outputs.py::test_handcrafted_legacy_reconcile[amend_upgrade_proration]
+FAILED test_outputs.py::test_random_feed_legacy_reconcile - Failed: random_20...
+FAILED test_outputs.py::test_random_feed_legacy_split - Failed: random_202609...
+FAILED test_outputs.py::test_big_feed_one_shot - Failed: big one-shot: ledger...
+FAILED test_outputs.py::test_big_feed_split - Failed: big split, after chunk ...
+FAILED test_outputs.py::test_big_feed_legacy_reconcile - Failed: big legacy o...
+FAILED test_outputs.py::test_big_feed_killed_and_resumed - Failed: big one-sh...
+FAILED test_outputs.py::test_big_feed_split_killed_in_last_run - Failed: big-...
+FAILED test_outputs.py::test_repeat_run_from_same_state_is_deterministic - Fa...
+FAILED test_outputs.py::test_hand_computed_month_end_clamping - AssertionErro...
+FAILED test_outputs.py::test_hand_computed_late_scan_rewind - AssertionError:...
+FAILED test_outputs.py::test_hand_computed_refund_debt - AssertionError: refu...
+=================== 56 failed, [REDACTED] passed in 3[REDACTED]3.87s (0:05:[REDACTED]3) ===================

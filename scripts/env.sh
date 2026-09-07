@@ -1,4 +1,5 @@
 #!/bin/bash
+# Co-authored by Claude (Anthropic) with the repository author.
 # Source this file before you run the other scripts.
 # It puts uv tools (harbor), Homebrew (docker, colima) and a Python 3.12 on PATH.
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
